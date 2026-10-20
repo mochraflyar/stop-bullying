@@ -13,33 +13,33 @@ window.TOPIK = {
      ------------------------------------------------------- */
   "apa-itu": {
     judul: "APA ITU BULLYING?",
-    sub: "Pengertian, ciri, dan karakteristik utama",
+    sub: "Pengertian, elemen kunci, dan bentuknya",
     tag: "Dasar",
-    definisi: "Bullying adalah tindakan sengaja, berulang, dan dilakukan oleh satu orang atau kelompok terhadap orang lain yang tidak mampu membela dirinya sendiri. Tindakan ini biasanya melibatkan ketidakseimbangan kekuatan, baik secara fisik, sosial, atau psikologis.",
-    catatan: "Bullying tidak hanya berupa pukulan atau kekerasan fisik, namun juga bisa berupa kata-kata kasar, pengasingan, atau penyebaran berita bohong melalui media sosial.",
+    definisi: "Bullying (perundungan) adalah tindakan agresif yang dilakukan secara sengaja dan berulang kali oleh seseorang atau sekelompok orang yang memiliki kekuatan atau kekuasaan lebih besar terhadap individu lain yang merasa tidak berdaya, dengan tujuan merugikan atau menyakiti secara fisik maupun psikologis.",
+    catatan: "Bullying tidak hanya berupa pukulan atau kekerasan fisik. Kata-kata kasar, pengasingan, dan penyebaran berita bohong melalui media sosial juga termasuk bullying.",
     bagian: [
       {
         id: "b-define",
         judul: "Definisi",
-        teks: "Bullying adalah tindakan <strong>sengaja</strong>, <strong>berulang</strong>, dan dilakukan oleh satu orang atau kelompok terhadap orang lain yang tidak mampu membela dirinya sendiri. Tindakan ini biasanya melibatkan <strong>ketidakseimbangan kekuatan</strong>, baik secara fisik, sosial, atau psikologis."
+        teks: "Bullying (perundungan) adalah tindakan agresif yang dilakukan secara <strong>sengaja</strong> dan <strong>berulang kali</strong> oleh seseorang atau sekelompok orang yang memiliki kekuatan atau kekuasaan lebih besar terhadap individu lain yang merasa tidak berdaya, dengan tujuan <strong>merugikan atau menyakiti</strong> secara fisik maupun psikologis."
       },
       {
-        id: "b-karakteristik",
-        judul: "Karakteristik Utama Bullying",
+        id: "b-elemen",
+        judul: "Elemen Kunci Bullying",
         list: [
-          "<strong>Tindakan Sengaja</strong> — Perbuatan dilakukan dengan niat untuk menyakiti atau menyusahkan orang lain, bukan sekadar kecelakaan atau bercanda tanpa sengaja.",
-          "<strong>Berulang</strong> — Peristiwa bullying terjadi berkali-kalar seiring waktu, bukan hanya satu kali kejadian tunggal.",
-          "<strong>Ketidakseimbangan Kekuatan</strong> — Pelaku memiliki kelebihan kekuatan atas korban, baik secara fisik (postur tubuh lebih besar), sosial (popularitas atau jaringan teman), atau psikologis (pengaruh atau kontrol emosional)."
+          "<strong>Ketidakseimbangan Kekuatan (Imbalance of Power)</strong> — Pelaku mengandalkan usia, ukuran fisik, status sosial, atau popularitas.",
+          "<strong>Keberulangan (Repetitive)</strong> — Terjadi lebih dari sekali atau berpotensi terjadi berulang kali.",
+          "<strong>Kesengajaan (Intentional)</strong> — Ada niat yang jelas untuk menyakiti atau merendahkan korban."
         ]
       },
       {
         id: "b-bentuk",
         judul: "Bentuk-Bentuk Bullying",
         list: [
-          "<strong>Bullying Fisik</strong> — Pukulan, tendangan, dorongan, atau merusak barang milik orang lain.",
-          "<strong>Bullying Verbal</strong> — Ejekan, hinaan, panggilan nama yang menyebalkan, atau ancaman lisan.",
-          "<strong>Bullying Sosial / Relasional</strong> — Pengasingan dari kelompok, penyebaran gosip-gosip, atau mengabaikan seseorang secara sengaja.",
-          "<strong>Cyber Bullying</strong> — Intimidasi digital melalui media sosial, aplikasi pesan, email, atau game online."
+          "<strong>Bullying Fisik</strong> — Tindakan agresif yang melukai fisik atau merusak barang milik korban.",
+          "<strong>Bullying Verbal</strong> — Serangan menggunakan kata-kata untuk merendahkan atau menyakiti perasaan.",
+          "<strong>Bullying Relasional / Sosial</strong> — Tindakan yang merusak reputasi atau hubungan sosial seseorang secara halus.",
+          "<strong>Cyberbullying</strong> — Perundungan melalui media digital atau platform daring."
         ]
       }
     ],
@@ -51,26 +51,28 @@ window.TOPIK = {
      ------------------------------------------------------- */
   "fisik": {
     judul: "BULLYING FISIK",
-    sub: "Kekerasan fisik terhadap korban",
+    sub: "Kekerasan fisik dan perusak barang",
     tag: "Bentuk Bullying",
-    definisi: "Bullying secara fisik adalah bentuk bullying yang melibatkan tindakan fisik seperti mendorong, menampar, menendang, atau merusak barang milik orang lain. Bentuk ini paling mudah dikenali karena meninggalkan tanda yang terlihat.",
+    definisi: "Bullying fisik adalah bentuk bullying yang melibatkan tindakan agresif melukai fisik atau merusak barang milik korban, seperti memukul, menendang, menampar, mendorong, atau memalak. Bentuk ini paling mudah dikenali karena meninggalkan tanda yang terlihat.",
     bagian: [
       {
         id: "b-contoh",
         judul: "Contoh Tindakan",
         list: [
-          "Mendorong, menampar, atau memukul korban.",
-          "Menendang dan menyakiti korban secara fisik.",
-          "Merusak atau menyembunyikan barang milik korban.",
+          "Memukul, menendang, atau menampar korban.",
+          "Mendorong korban dengan kuat hingga ia terjatuh.",
+          "Memalak korban dengan kata-kata kasar sambil melakukan kekerasan fisik.",
+          "Merusak, menyembunyikan, atau membuang barang milik korban.",
           "Melempar benda ke arah korban.",
-          "Menahan korban dengan kuat sehingga tidak bisa bergerak."
+          "Menahan korban dengan kuat sehingga ia tidak bisa bergerak."
         ]
       },
       {
         id: "b-dampak",
         judul: "Dampak bagi Korban",
         list: [
-          "Luka fisik yang memerlukan perawatan.",
+          "Luka fisik yang memerlukan perawatan dan bisa kekal membekas.",
+          "Keluhan somatis seperti sakit kepala atau sakit perut akibat stres.",
           "Takut berada di tempat atau kelas yang sama dengan pelaku.",
           "Rendahnya rasa percaya diri dan merasa tidak aman.",
           "Menurunnya kehadiran di sekolah karena menghindari pelaku."
@@ -80,10 +82,10 @@ window.TOPIK = {
         id: "b-tips",
         judul: "Cara Menanganinya",
         list: [
-          "Jauhi lokasi kejadian dan jangan membalas dengan violence.",
-          "Cari teman yang dapat dipercaya untuk membantu.",
-          "Laporkan kepada guru atau orang tua segera setelah kejadian.",
-          "Simpan bukti (foto, kronologi) bila ada, agar mudah saat melapor."
+          "Jauhi lokasi kejadian dan jangan membalas dengan kekerasan.",
+          "Cari teman atau orang dewasa yang dapat dipercaya untuk membantu.",
+          "Laporkan kepada guru, orang tua, atau guru BK segera setelah kejadian.",
+          "Simpan bukti (foto, kronologi kejadian) bila ada, agar mudah saat melapor."
         ]
       }
     ],
@@ -97,16 +99,17 @@ window.TOPIK = {
     judul: "BULLYING VERBAL",
     sub: "Kekerasan dengan kata-kata",
     tag: "Bentuk Bullying",
-    definisi: "Verbal bullying adalah bentuk bullying yang dilakukan dengan menggunakan kata-kata untuk menyinggung, menghina, atau merendahkan seseorang. Tidak ada kontak fisik, namun luka yang ditusuk pada hati korban bisa sangat dalam dan sulit terlihat oleh orang lain.",
+    definisi: "Verbal bullying adalah serangan yang menggunakan kata-kata untuk merendahkan atau menyakiti perasaan seseorang, seperti menjuluki, memaki, menghina, mengancam, atau menyebarkan rumor. Tidak ada kontak fisik, namun luka yang ditusuk pada hati korban bisa sangat dalam dan sulit terlihat oleh orang lain.",
     bagian: [
       {
         id: "b-contoh",
         judul: "Contoh Perilaku",
         list: [
-          "Memanggil nama panggilan yang menyebalkan atau mengejek secara berulang.",
-          "Mengucapkan kata-kata kasar, kebencian, atau ancaman kepada seseorang.",
-          "Menyebarkan berita bohong atau gosip tentang seseorang.",
-          "Mengejek penampilan, agama, etnis, atau kondisi fisik orang lain.",
+          "Menjuluki dengan nama panggilan yang menyebalkan dan mengejek secara berulang.",
+          "Memaki dan mengucapkan kata-kata kasar atau ujaran kebencian.",
+          "Menghina, termasuk <strong>body shaming</strong> (menilai tubuh, berat badan, atau penampilan).",
+          "Mengancam secara lisan, baik langsung maupun melalui pesan.",
+          "Menyebarkan rumor atau berita bohong tentang seseorang.",
           "Membuat lelucon yang menyakiti perasaan seseorang secara berulang.",
           "Mempermainkan nama atau gelar seseorang untuk mengejek di depan umum."
         ]
@@ -115,10 +118,11 @@ window.TOPIK = {
         id: "b-dampak",
         judul: "Dampak Spesifik pada Korban",
         list: [
-          "Dampak mental yang dalam, termasuk kecemasan berlebihan dan depresi ringan hingga sedang.",
+          "Dampak mental yang dalam: kecemasan berlebihan, depresi ringan hingga sedang, dan rendahnya harga diri.",
           "Kesulitan berkonsentrasi di kelas sehingga nilai akademik menurun.",
           "Menghindari interaksi sosial dan merasa terisolasi dari teman sebaya.",
-          "Kehilangan rasa percaya diri dalam berbicara atau menyatakan pendapat."
+          "Kehilangan keberanian untuk berbicara atau menyampaikan pendapat di depan kelas.",
+          "Tumbuhnya perasaan benci terhadap diri sendiri."
         ]
       },
       {
@@ -140,18 +144,19 @@ window.TOPIK = {
      ------------------------------------------------------- */
   "sosial": {
     judul: "BULLYING SOSIAL",
-    sub: "Pengasingan dan gosip",
+    sub: "Pengasingan, gosip, dan perusak reputasi",
     tag: "Bentuk Bullying",
-    definisi: "Bullying sosial atau relasional adalah bentuk bullying yang terjadi melalui pengasingan dari kelompok, penyebaran gosip-gosip, atau sengaja mengabaikan seseorang. Tidak ada yang menyentuhnya, tetapi korban merasa dibuang dari komunitasnya.",
+    definisi: "Bullying relasional atau sosial adalah tindakan yang merusak reputasi atau hubungan sosial seseorang secara halus — tanpa sentuhan fisik dan tanpa suara keras. Korban tetap merasa tersakiti, tetapi sering kali tidak bisa menunjukkan luka yang jelas.",
     bagian: [
       {
         id: "b-contoh",
         judul: "Contoh Perilaku",
         list: [
           "Mengucilkan korban dari kelompok pertemanan.",
-          "Menyebarkan gosip dan berita bohong tentang korban.",
+          "Menyeboarkan fitnah dan berita bohong tentang korban.",
+          "Mempermalukan korban di depan umum.",
           "Mengabaikan korban secara sengaja dalam interaksi sosial.",
-          "Merusak nama baik korban di belakang layar.",
+          "Memprovokasi orang lain untuk memusuhi korban.",
           "Memilih beberapa teman untuk bermain-main dan mengajak orang lain ikut."
         ]
       },
@@ -159,8 +164,9 @@ window.TOPIK = {
         id: "b-dampak",
         judul: "Dampak bagi Korban",
         list: [
-          "Merasa tidak dihargai dan tidak punya tempat.",
-          "Kehilangan dukungan dari kelompok yang biasanya menjadi tempatnya cerita.",
+          "Merasa tidak dihargai dan tidak punya tempat di kelompok.",
+          "Kehilangan dukungan dari teman yang biasanya menjadi tempatnya bercerita.",
+          "Nama baik yang rusak dan sulit dipulihkan kembali.",
           "Kecemasan dan rasa kesepian yang berkepanjangan.",
           "Menarik diri dari kegiatan sekolah dan kehidupannya."
         ]
@@ -170,7 +176,7 @@ window.TOPIK = {
         judul: "Cara Menanganinya",
         list: [
           "Ajak korban bergabung dengan kelompokmu — dukungan teman sangat berpengaruh.",
-          "Tolak ikut menyebarkan gosip, sekecil apa pun.",
+          "Tolak ikut menyebarkan rumor, sekecil apa pun.",
           "Bantu korban merasa yakin tentang bagaimana ia terlihat di mata orang lain.",
           "Bicarakan dengan guru BK atau wali kelas untuk penanganan lanjutan."
         ]
@@ -186,18 +192,18 @@ window.TOPIK = {
     judul: "CYBER BULLYING",
     sub: "Bullying di dunia digital",
     tag: "Bentuk Bullying",
-    definisi: "Cyber bullying adalah bentuk bullying yang dilakukan melalui platform digital, seperti media sosial, aplikasi pesan, email, atau game online. Pelaku menggunakan teknologi untuk mengancam, menghina, atau menyebarkan konten yang merugikan korban.",
-    catatan: "Berbeda dengan bullying konvensional, cyber bullying dapat terjadi kapan saja dan di mana saja, bahkan ketika korban berada di rumah, sehingga korban merasa tidak ada tempat yang aman.",
+    definisi: "Cyber bullying adalah perundungan yang dilakukan melalui media digital atau platform daring, seperti media sosial, aplikasi pesan, surel, atau gim daring. Pelaku memakai teknologi untuk mengancam, menghina, atau menyebarkan konten yang merugikan korban.",
+    catatan: "Berbeda dengan bullying konvensional, cyber bullying dapat terjadi kapan saja dan di mana saja, bahkan ketika korban berada di rumah. Korban bisa saja tidak tahu siapa pelakunya, sehingga merasa tidak ada tempat yang aman.",
     bagian: [
       {
         id: "b-contoh",
         judul: "Contoh Perilaku",
         list: [
-          "Mengirim pesan ancaman, kata kasar, atau intimidasi melalui chat.",
-          "Menyebarkan foto atau video yang tidak etis tentang seseorang tanpa izin.",
+          "Mengirim pesan ancaman, kata kasar, atau ujaran kebencian melalui media sosial dan aplikasi pesan.",
+          "Menyebarkan foto atau video pribadi tanpa izin (<strong>doxxing</strong>).",
           "Membuat akun palsu untuk mengejek atau menyebo bohong tentang seseorang.",
           "Mengomentari postingan seseorang dengan kata-kata yang menyakitkan.",
-          "Mengebobol akun media sosial seseorang dan memposting konten buruk atas namanya.",
+          "Menyebarkan konten yang mempermalukan korban ke banyak orang sekaligus.",
           "Membuat grup obrolan untuk mem-bully satu individu secara bersama-sama."
         ]
       },
@@ -207,8 +213,9 @@ window.TOPIK = {
         list: [
           "Kecemasan parah setiap kali menerima notifikasi ponsel atau media sosial.",
           "Merasa takut untuk membuka aplikasi pesan atau media sosial.",
-          "Gangguan tidur karena pikiran tentang konten yang menyebar tentang diri mereka.",
-          "Menarik diri dari kehidupan sosial nyata dan digital."
+          "Gangguan tidur karena terus memikirkan konten yang menyebar tentang dirinya.",
+          "Menarik diri dari kehidupan sosial nyata dan digital.",
+          "Jejak digital yang sulit dihapus dan bisa bertahan lama setelah kejadian selesai."
         ]
       },
       {
@@ -217,7 +224,7 @@ window.TOPIK = {
         list: [
           "Blokir, laporkan, dan batasi akses pelaku di media sosial.",
           "Simpan bukti (tangkapan layar) sebelum konten dihapus.",
-          "Jangan membalas-provokatif — balas hanya menambah perhatian.",
+          "Jangan membalas secara provokatif — balasan hanya menambah perhatian.",
           "Bicara dengan orang tua, guru, atau pendidik yang dipercaya."
         ]
       }
@@ -232,19 +239,19 @@ window.TOPIK = {
     judul: "NON-VERBAL BULLYING",
     sub: "Tanpa kata-kata, tetap melukai",
     tag: "Bentuk Bullying",
-    definisi: "Non-verbal bullying adalah bentuk bullying yang dilakukan tanpa menggunakan kata-kata, biasanya melalui gerakan tubuh, ekspresi wajah, atau tindakan yang menyusahkan dan menakutkan seseorang.",
+    definisi: "Non-verbal bullying adalah bullying yang dilakukan tanpa menggunakan kata-kata, biasanya melalui gerakan tubuh, ekspresi wajah, atau tindakan yang menyusahkan dan menakutkan seseorang. Bentuk ini tetap termasuk bullying karena dilakukan secara sengaja, berulang, dan dengan ketidakseimbangan kekuatan.",
     catatan: "Karena tidak mengandalkan ujaran, bentuk ini sering kali sulit dideteksi oleh guru atau orang tua, padahal dampak psikologisnya bisa sama parahnya dengan bentuk bullying lainnya.",
     bagian: [
       {
         id: "b-contoh",
         judul: "Contoh Perilaku",
         list: [
-          "Melihat atau menatap seseorang dengan ekspresi jijik, marah, atau menghina.",
+          "Menatap atau melirik seseorang dengan ekspresi jijik, marah, atau menghina.",
           "Mengecualikan atau mengasingkan seseorang dari kegiatan kelompok secara sengaja.",
-          "Membuat gerakan jahat atau lichaian terhadap seseorang.",
+          "Membuat gerakan jahat atau lelucon kasar terhadap seseorang.",
           "Menyembunyikan atau merusak barang milik orang lain.",
           "Mengabaikan seseorang secara sengaja dalam interaksi sosial.",
-          "Menunjukkan jari tengah atau gerakan kelakar yang menjatuhkan martabat orang lain."
+          "Menunjukkan gerakan kelakar yang menjatuhkan martabat orang lain."
         ]
       },
       {
@@ -253,7 +260,7 @@ window.TOPIK = {
         list: [
           "Perasaan tidak aman, malu-malu, serta ketakutan untuk hadir di sekolah.",
           "Ragu untuk bergabung dengan kelompok teman.",
-          "Susah konsentrasi karena selalu mirrорok sekeliling.",
+          "Susah konsentrasi karena selalu mengintip sekeliling.",
           "Kehilangan rasa percaya diri dalam bersikap dan berinteraksi."
         ]
       },
@@ -278,37 +285,36 @@ window.TOPIK = {
     judul: "DAMPAK BULLYING",
     sub: "Konsekuensi bagi korban, pelaku, dan bystander",
     tag: "Dampak",
-    definisi: "Bullying dapat menyebabkan dampak serius bagi semua pihak yang terlibat — bukan hanya korban, tetapi juga pelaku dan orang-orang yangibariki tanpa ikut.",
+    definisi: "Bullying membawa dampak negatif yang signifikan bagi semua pihak yang terlibat — bukan hanya korban, tetapi juga pelaku dan orang-orang yang menyaksinya tanpa ikut.",
     bagian: [
       {
         id: "bagaikan-korban",
         judul: "Bagi Korban",
         list: [
-          "<strong>Jangka pendek (mental):</strong> kecemasan, stres, gangguan mood, dan rasa takut yang berlebihan.",
-          "<strong>Jangka panjang (mental):</strong> depresi, kecemasan kronis, dan risiko pikiran untuk menyakiti diri sendiri.",
-          "<strong>Fisik:</strong> luka dari kekerasan fisik, gangguan tidur, serta masalah kesehatan akibat stres berlebihan.",
-          "<strong>Akademik:</strong> menurunnya prestasi belajar, minat untuk ke sekolah, dan partisipasi di kelas.",
-          "Kecemasan, stres, dan gangguan mood yang berlebihan pada hari-hari biasa.",
-          "Rendahnya rasa percaya diri dan perasaan tidak aman."
+          "<strong>Kesehatan Mental:</strong> kecemasan berlebih, depresi, rasa takut, rendahnya harga diri (<em>low self-esteem</em>), hingga pikiran untuk menyakiti diri sendiri atau bunuh diri.",
+          "<strong>Akademik:</strong> penurunan prestasi belajar, sering bolos sekolah, ketakutan pergi ke sekolah, hingga putus sekolah.",
+          "<strong>Fisik:</strong> keluhan somatis (sakit kepala, sakit perut akibat stres), luka fisik, gangguan tidur, dan penurunan nafsu makan.",
+          "<strong>Sosial:</strong> menarik diri dari pergaulan dan merasa terisolasi dari teman sebaya."
         ]
       },
       {
         id: "bagaikan-pelaku",
         judul: "Bagi Pelaku",
         list: [
-          "Berisiko mengalami masalah perilaku di masa depan jika tidak mendapat bimbingan yang tepat.",
-          "Kemungkinan terlibat dalam tindak pidana atau kekerasan saat dewasa.",
+          "Tumbuh menjadi pribadi yang agresif dan impulsif, serta mengandalkan kekerasan untuk menyelesaikan masalah.",
+          "Berisiko tinggi terlibat dalam perilaku kriminal, penyalahgunaan zat, dan kekerasan di masa dewasa.",
           "Kesulitan membangun hubungan interpersonal yang sehat.",
-          "Merasa memiliki kekuasaan, padahal justru terkunci oleh siklus kekerasan."
+          "Berisiko mengalami masalah perilaku di masa depan bila tidak mendapat bimbingan yang tepat."
         ]
       },
       {
         id: "bagaikan-saksi",
         judul: "Bagi Saksi (Bystander)",
         list: [
-          "Merasa takut, bersalah, atau tidak berdaya saat menjadi saksi kasus bullying.",
-          "Terpengaruh emosional dan mungkin mengalami kecemasan mengenai keselamatan diri sendiri.",
-          "Bersama pelaku tanpa ikut menyetujui, karena diamnya dianggap menyetujui."
+          "Merasa bersalah, takut, atau tidak berdaya saat menjadi saksi kasus bullying.",
+          "Takut menjadi sasaran berikutnya.",
+          "Mengalami ketidaknyamanan mental akibat menyaksikan ketidakadilan secara terus-menerus.",
+          "Diamnya tanpa menolong dianggap menyetujui tindakan tersebut."
         ]
       }
     ],
@@ -319,19 +325,20 @@ window.TOPIK = {
      8. OLEH ANAK — CARA MENGHINDARI
      ------------------------------------------------------- */
   "hindari-anak": {
-    judul: "CARA MENGHINDARI MENJADI KORBAN",
-    sub: "Panduan untuk siswa",
+    judul: "CARA MENGHINDARI DAN MENGHADAPI BULLYING",
+    sub: "Perspektif siswa",
     tag: "Oleh Anak",
-    definisi: "Tidak ada anak yang harus Spacewatch suffering sendiri. Beberapa langkah sederhana dapat membuatmu jauh lebih aman dan percaya diri di sekolah.",
+    definisi: "Kalau kamu menghadapi bullying atau merasa berisiko menjadi sasarannya, ada beberapa langkah yang bisa kamu tempuh sendiri. Tidak ada satu pun langkah yang mengharuskan kamu melawan pelaku secara fisik.",
     bagian: [
       {
-        id: "b-tips",
-        judul: "Yang Perlu Dilakukan",
+        id: "b-langkah",
+        judul: "5 Langkah yang Perlu Dilakukan",
         list: [
-          "<strong>Tunjukkan rasa percaya diri</strong> — Berdiri tegak, lihat langsung mata saat berbicara, dan tampilkan keyakinan pada diri sendiri.",
-          "<strong>Jalin pertemanan yang sehat</strong> — Berteman dengan teman yang positif, saling menghormati, dan tidak menyukai tindakan bullying.",
-          "<strong>Hindari provokasi</strong> — Jangan terusik dengan ajakan untuk bertengkar atau bereaksi secara emosional terhadap pelaku.",
-          "<strong>Jangan ragu untuk menolak</strong> — Katakan “tidak” dengan tegas jika ada permintaan atau tindakan yang membuat Anda merasa tidak nyaman."
+          "<strong>1. Tunjukkan sikap percaya diri.</strong> Berdiri tegak, tatap mata pelaku, dan sampaikan dengan tegas agar mereka berhenti — tanpa perlu membalas dengan kekerasan.",
+          "<strong>2. Jangan tunjukkan reaksi yang diharapkan pelaku.</strong> Pelaku biasanya merasa puas jika korban menangis, marah, atau panik. Tetap tenang dan tinggalkan lokasi.",
+          "<strong>3. Selalu berada di lingkungan aman.</strong> Hindari area yang sepi dan usahakan selalu bersama teman atau kelompok yang mendukung (<em>support system</em>).",
+          "<strong>4. Simpan bukti.</strong> Khusus untuk cyber bullying: ambil tangkapan layar atas pesan, komentar, atau konten yang berisi perundungan sebagai bukti pelaporan.",
+          "<strong>5. Bicara dan laporkan.</strong> Jangan memendam masalah sendiri. Segera ceritakan kepada orang dewasa yang dipercaya — orang tua, guru BK, atau wali kelas."
         ]
       },
       {
@@ -339,8 +346,8 @@ window.TOPIK = {
         judul: "Saat Menjadi Saksi",
         list: [
           "<strong>Jangan ikut menertawakan</strong> — Jangan menjadi bagian dari kegelapan dengan menyertai ejekan atau meremehkan korban.",
-          "<strong>Ajak korban bergabung dengan kelompokmu</strong> — Tunjukkan dukungan dengan mengajak korban duduk atau bercerita bersama teman-teman Anda.",
-          "<strong>Laporkan ke guru atau orang tua secara aman</strong> — Beritahu orang dewasa yang dipercaya tentang kejadian yang Anda saksikan.",
+          "<strong>Ajak korban bergabung dengan kelompokmu</strong> — Tunjukkan dukungan dengan mengajak korban duduk atau bercerita bersama teman-temanmu.",
+          "<strong>Laporkan ke guru atau orang tua secara aman</strong> — Beritahu orang dewasa yang dipercaya tentang kejadian yang kamu saksikan.",
           "<strong>Jika berani, intervensi dengan sopan</strong> — Campuri tangan dengan tenang untuk menghentikan situasi, tanpa menimbulkan kekerasan baru."
         ]
       },
@@ -354,23 +361,23 @@ window.TOPIK = {
   },
 
   /* -------------------------------------------------------
-     9. OLEH TENAGA PENDIDIK
+     9. OLEH TENAGA PENDIDIK — PENCEGAHAN
      ------------------------------------------------------- */
   "hindari-guru": {
-    judul: "STRATEGI PENCEGAHAN BULLYING DI SEKOLAH",
-    sub: "Peran guru, orang tua, dan sekolah",
+    judul: "PENCEGAHAN BULLYING DI SEKOLAH",
+    sub: "Peran guru, orang tua, dan seluruh ekosistem sekolah",
     tag: "Oleh Tenaga Pendidik",
-    definisi: "Sekolah adalah tempat kedua anak belajar. Strategi pencegahan yang efektif harus dibangun bersama antara sekolah, guru, dan keluarga — bukan hanya menghukum pelaku satu per satu.",
+    definisi: "Pencegahan bullying tidak bisa dilakukan satu orang saja. Pencegahan memerlukan sinergi dari seluruh ekosistem sekolah melalui pendekatan sistematis: kebijakan yang jelas, edukasi berkelanjutan, layanan pengaduan yang aman, pengawasan yang optimal, dan keterlibatan siswa sendiri.",
     bagian: [
       {
-        id: "b-tips",
-        judul: "Program yang Perlu Dijalankan",
+        id: "b-pilar",
+        judul: "5 Pilar Pencegahan",
         list: [
-          "<strong>Kebijakan Sekolah Anti-Bullying</strong> — Aturan jelas yang melarang tindakan bullying dengan sanksi yang konsisten bagi pelaku.",
-          "<strong>Program Edukasi untuk Siswa & Guru</strong> — Pelatihan rutin untuk mengenali, mencegah, dan menangani kasus bullying di sekolah.",
-          "<strong>Lingkungan Sekolah yang Suportif</strong> — Menciptakan suasana tempat belajar yang nyaman, aman, dan menyambut setiap siswa tanpa diskriminasi.",
-          "<strong>Sistem Pelaporan yang Aman (Anonim)</strong> — Saluran pelaporan yang memastikan identitas pelapor dilindungi dari tindak balas.",
-          "<strong>Peran Guru & Orang Tua</strong> — Kerja sama antara sekolah dan keluarga dalam memantau perilaku serta memberikan bimbingan emosional kepada anak."
+          "<strong>Kebijakan Anti-Bullying yang Jelas</strong> — Membentuk Peraturan Sekolah dan SOP pencegahan serta penanganan kekerasan yang transparan.",
+          "<strong>Edukasi dan Sosialisasi Berkelanjutan</strong> — Mengintegrasikan materi empati, toleransi, dan kesehatan mental dalam kurikulum serta kegiatan ekstrakurikuler.",
+          "<strong>Layanan Pengaduan yang Aman</strong> — Menyediakan media pelaporan yang menjamin kerahasiaan identitas korban atau pelapor: kotak aduan, platform daring, atau konseling BK.",
+          "<strong>Pengawasan Optimal</strong> — Meningkatkan pengawasan guru di area rawan seperti kantin, lorong sekolah, toilet, dan lapangan.",
+          "<strong>Pembentukan Duta Anti-Bullying</strong> — Memberdayakan siswa sebagai konselor sebaya (<em>peer counselor</em>) untuk menyebarkan budaya saling menghargai."
         ]
       },
       {
@@ -394,44 +401,51 @@ window.TOPIK = {
   },
 
   /* -------------------------------------------------------
-     10. JERAT HUKUM
+     10. DASAR HUKUM & JERAT HUKUM
      ------------------------------------------------------- */
   "hukum": {
-    judul: "JERAT HUKUM BULLYING",
-    sub: "Dasar hukum dan konsekuensinya di Indonesia",
+    judul: "DASAR HUKUM BULLYING",
+    sub: "Regulasi dan konsekuensinya di Indonesia",
     tag: "Hukum",
-    definisi: "Bullying merupakan serangkaian aksi negatif dan agresif, dengan tujuan merendahkan, dilakukan oleh satu atau sekelompok orang terhadap pihak yang lebih lemah, selama kurun waktu tertentu dan bersifat terus-menerus. Di Indonesia, tindakan ini punya dasar hukum yang jelas.",
+    definisi: "Pemerintah Indonesia mengatur perlindungan anak dari tindakan kekerasan dan perundungan melalui berbagai regulasi hukum. Pelaku bullying dapat dikenai sanksi administratif di sekolah maupun sanksi pidana, tergantung pada bentuk dan berat perbuatannya.",
     bagian: [
       {
         id: "b-dasar",
-        judul: "Dasar Hukum",
+        judul: "A. Dasar Hukum",
         list: [
-          "<strong>Pasal 351 KUHP</strong> — Mengancam dengan suatu kejahatan terhadap jiwa, harta benda, atau nama baik seseorang.",
           "<strong>UU No. 35 Tahun 2014</strong> tentang Perubahan atas UU No. 23 Tahun 2002 tentang Perlindungan Anak.",
-          "<strong>UU No. 23 Tahun 2002</strong> tentang Perlindungan Anak — dasar perlindungan anak dari kekerasan, termasuk bullying.",
-          "<strong>UU No. 11 Tahun 2008 (ITE)</strong> — cyber bullying melalui platform digital yang menyebarkan konten merugikan.",
-          "<strong>Permendikbud & Peraturan Pemerintah</strong> — tentang pencegahan dan penanganan kekerasan di satuan pendidikan."
+          "<strong>Permendikbudristek No. 46 Tahun 2023</strong> tentang Pencegahan dan Penanganan Kekerasan di Lingkungan Satuan Pendidikan (PPKSP).",
+          "<strong>UU ITE</strong> — UU No. 19 Tahun 2016 tentang Informasi dan Transaksi Elektronik jo. UU No. 1 Tahun 2024, untuk kasus cyber bullying.",
+          "<strong>KUHP</strong> (Kitab Undang-Undang Hukum Pidana) dan <strong>UU No. 11 Tahun 2012</strong> tentang Sistem Peradilan Pidana Anak (SPPA)."
         ]
       },
       {
-        id: "b-sekolah",
-        judul: "Konsekuensi di Lingkungan Sekolah",
+        id: "b-jerat-anak",
+        judul: "B. Jerat Hukum — Kekerasan Fisik atau Verbal terhadap Anak",
         list: [
-          "<strong>Sanksi administratif sekolah</strong> — Teguran, skorsing, hingga pemindahan sekolah bagi pelaku yang berulang melanggar aturan.",
-          "<strong>Sanksi sosial</strong> — Dikucilkan dari kegiatan sekolah atau dihapus dari jabatan kepengurusan siswa.",
-          "<strong>Konseling wajib</strong> — Pelaku diwajibkan mengikuti konseling untuk memahami dampak perbuatannya dan berubah perilaku."
+          "<strong>Pasal 76C UU No. 35 Tahun 2014</strong> — Setiap orang dilarang melakukan atau turut serta melakukan kekerasan terhadap anak, baik secara fisik maupun verbal.",
+          "<strong>Pasal 80 UU No. 35 Tahun 2014</strong> — Penjara paling lama 3 tahun 6 bulan dan/atau denda paling banyak Rp72.000.000; meningkat hingga 5 tahun bila korban mengalami luka berat, dan hingga 15 tahun bila akibatnya kematian. Sanksi final bergantung pada klasifikasi delik yang dilakukan."
         ]
       },
       {
-        id: "b-lapor",
-        judul: "Siapa yang Bisa Melapor?",
+        id: "b-jerat-cyber",
+        judul: "B. Jerat Hukum — Cyberbullying",
         list: [
-          "Setiap orang yang mengalami atau mengetahui terjadi kekerasan dan perundungan di sekolah.",
-          "Siswa, orang tua/wali, dan masyarakat dapat melaporkan pelaku bullying kepada Dinas Pendidikan setempat."
+          "<strong>Pasal 27A jo. Pasal 45 ayat (4) UU ITE</strong> — Menyerang kehormatan atau nama baik di media digital: Penjara paling lama 2 tahun atau denda paling banyak Rp400.000.000.",
+          "<strong>Pasal 29 jo. Pasal 45B UU ITE</strong> — Mengirim pesan berisi ancaman atau menakut-nakuti secara daring: Penjara paling lama 4 tahun atau denda paling banyak Rp750.000.000."
+        ]
+      },
+      {
+        id: "b-anak",
+        judul: "C. Penanganan Pelaku Usia Sekolah",
+        list: [
+          "<strong>Pelaku di bawah umur (kurang dari 18 tahun)</strong> — Proses hukum menggunakan UU No. 11 Tahun 2012 tentang Sistem Peradilan Pidana Anak (SPPA).",
+          "<strong>Diversi dan Keadilan Restoratif</strong> — SPPA mengutamakan pendekatan yang memprioritaskan pemulihan korban dan perbaikan pelaku.",
+          "<strong>Catatan terbaru</strong> — Sebagian ketentuan SPPA kemudian diubah dengan UU No. 12 Tahun 2022."
         ]
       }
     ],
-    catatan: "Informasi di atas bersifat umum dan bukan merupakan nasihat hukum profesional.",
+    catatan: "Informasi di atas bersifat umum dan bukan merupakan nasihat hukum profesional. Perkara bullying di sekolah sebaiknya ditangani lewat sekolah, guru BK, dan orang tua terlebih dahulu.",
     terkait: ["dampak", "hindari-guru", "pengaduan"]
   },
 
@@ -443,7 +457,8 @@ window.TOPIK = {
     sub: "Laporkan secara anonim dan aman",
     tag: "Layanan Pengaduan",
     tipe: "form",
-    definisi: "Semua laporan akan ditinjau dalam 24 jam dan dijaga kerahasiaannya. Pelapor anonim tidak akan dikenali oleh pelaku maupun petugas.",
+    definisi: "Laporan yang dikirim lewat formulir ini langsung masuk ke dashboard guru, tanpa perantara. Identitas pelapor dilindungi, dan laporan mode anonim tidak menyimpan nama sama sekali.",
+    catatan: "Kalau kamu lebih nyaman bicara langsung, datang ke ruang BK atau hubungi wali kelas. Untuk kasus yang mendesak, hubungi nomor layanan pengaduan yang tercantum di poster.",
     bagian: [],
     terkait: ["dampak", "hukum", "hindari-anak"]
   }

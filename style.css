@@ -723,6 +723,26 @@ a { color: inherit; }
   margin-bottom: 20px;
 }
 .dform h3 { font-family: var(--font-head); font-size: 1.05rem; color: var(--navy); margin-bottom: 14px; }
+.dform h4 {
+  font-family: var(--font-head);
+  font-size: .82rem;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  margin: 0 0 10px;
+  padding-left: 10px;
+  border-left: 4px solid var(--yellow);
+}
+.saluran {
+  background: #F4F8FF;
+  border: 1px dashed var(--blue-lt);
+  border-radius: var(--r-sm);
+  padding: 13px 15px;
+  margin-bottom: 16px;
+}
+.saluran .d-list { margin: 0; }
+.saluran .d-list li { margin-bottom: 7px; font-size: .85rem; }
+.saluran .d-list li:last-child { margin-bottom: 0; }
 .anonim-box {
   display: flex;
   align-items: center;
@@ -815,6 +835,168 @@ a { color: inherit; }
 .r-del:hover { color: var(--red-dk); }
 .riwayat-empty { font-size: .8rem; color: var(--ink-3); font-style: italic; }
 
+/* ---------- 7b. KANAL PENGADUAN (form + poster) ---------- */
+.kanal-aksi { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.btn-kanal {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  color: var(--ink-2);
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: .78rem;
+  padding: 8px 15px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color .16s, background .16s, color .16s;
+}
+.btn-kanal:hover { border-color: var(--blue-lt); color: var(--navy); }
+.btn-kanal.sm { padding: 5px 12px; font-size: .72rem; }
+.btn-wa { border-color: #25D366; color: #128C3E; }
+.btn-wa:hover { background: #EAFBF1; border-color: #25D366; color: #0B6B2F; }
+.btn-mail { border-color: var(--blue-lt); color: var(--blue); }
+.btn-mail:hover { background: #EEF4FF; }
+.btn-copy { border-color: #94A3B8; color: var(--ink-2); }
+.btn-copy:hover { background: #F1F5F9; }
+.form-extra { margin-top: 10px; font-size: .8rem; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.form-extra a:not(.btn-kanal) { color: var(--blue); font-weight: 800; text-decoration: underline; }
+
+/* --- Kanal pengaduan di poster --- */
+.lapor-extra {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: clamp(14px, 2.4vw, 26px);
+  align-items: start;
+  margin-top: 18px;
+}
+.lapor-kanal {
+  background: rgba(255, 255, 255, .78);
+  border: 2px dashed rgba(22, 34, 74, .25);
+  border-radius: var(--r-md);
+  padding: 14px 16px;
+}
+.lapor-kanal-h {
+  font-family: var(--font-head);
+  font-size: .76rem;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.lapor-kanal-list { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 20px; }
+.lapor-kanal-list li { font-size: .8rem; color: var(--ink-2); }
+.lapor-kanal-list strong { color: var(--navy); }
+.lapor-kanal-list a { color: var(--blue); font-weight: 800; text-decoration: none; }
+.lapor-kanal-list a:hover { text-decoration: underline; }
+.lapor-qr { text-align: center; }
+.lapor-qr img {
+  display: block;
+  background: #fff;
+  padding: 5px;
+  border-radius: var(--r-sm);
+  border: 2px solid rgba(22, 34, 74, .15);
+}
+.lapor-qr span { display: block; margin-top: 5px; font-size: .68rem; color: var(--ink-2); font-weight: 700; }
+
+/* --- Tautan dashboard di footer --- */
+.foot-dash { margin-top: 14px; }
+.foot-dash a { color: var(--yellow); font-weight: 800; font-size: .74rem; text-decoration: none; }
+.foot-dash a:hover { text-decoration: underline; }
+.dfoot a { color: var(--yellow); font-weight: 800; text-decoration: none; }
+.dfoot a:hover { text-decoration: underline; }
+
+/* ---------- 8. DASHBOARD GURU ---------- */
+.dash-body { background: var(--bg-soft); }
+.dash-wrap { max-width: 1040px; margin: 0 auto; padding: clamp(20px, 4vw, 38px) clamp(16px, 4vw, 26px) 60px; }
+
+.dash-login { display: flex; justify-content: center; }
+.dash-login[hidden], .dash-panel[hidden] { display: none !important; }
+.dash-login-card {
+  background: var(--paper);
+  border: 2px solid var(--line);
+  border-top: 6px solid var(--red);
+  border-radius: var(--r-md);
+  box-shadow: 0 12px 30px rgba(22, 34, 74, .1);
+  padding: clamp(20px, 3.4vw, 32px);
+  width: 100%;
+  max-width: 440px;
+}
+.dash-login-badge {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--navy);
+  font-family: var(--font-head);
+  font-size: .66rem;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 4px 12px;
+}
+.dash-login-card h1 { font-family: var(--font-head); font-size: clamp(1.1rem, 2.4vw, 1.45rem); color: var(--navy); margin: 10px 0 6px; }
+.dash-login-sub { font-size: .84rem; color: var(--ink-2); margin-bottom: 18px; }
+.dash-login-card .btn-kirim { width: 100%; margin-top: 4px; }
+.dash-konf {
+  margin-top: 14px;
+  font-size: .74rem;
+  line-height: 1.55;
+  padding: 10px 12px;
+  border-radius: var(--r-sm);
+  background: #F4F8FF;
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+}
+.dash-konf.ok { background: #F5FBF0; border-color: #CFE8BB; }
+.dash-konf.warn { background: #FFFBEB; border-color: var(--yellow-2); }
+.dash-konf code { background: #E9EEF8; padding: 1px 5px; border-radius: 4px; font-size: .72rem; }
+
+.dash-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.dash-bar-info strong { display: block; font-family: var(--font-head); font-size: 1.05rem; color: var(--navy); }
+.dash-bar-info span { font-size: .76rem; color: var(--ink-3); font-weight: 700; }
+.dash-bar-aksi { display: flex; gap: 8px; }
+
+.dash-stats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 16px; }
+.dash-stat { background: var(--paper); border: 2px solid var(--line); border-left: 5px solid var(--blue); border-radius: var(--r-sm); padding: 12px 14px; }
+.dash-stat.merah { border-left-color: var(--red); }
+.dash-stat.kuning { border-left-color: var(--yellow-2); }
+.dash-stat.hijau { border-left-color: var(--green); }
+.dash-stat.navy { border-left-color: var(--navy); }
+.dash-stat-n { display: block; font-family: var(--font-head); font-size: 1.5rem; color: var(--navy); line-height: 1.1; }
+.dash-stat-l { display: block; font-size: .66rem; font-weight: 800; text-transform: uppercase; letter-spacing: .4px; color: var(--ink-3); }
+
+.dash-filter { background: var(--paper); border: 2px solid var(--line); border-radius: var(--r-md); padding: 14px 16px; margin-bottom: 18px; }
+.dash-filter-row { display: grid; grid-template-columns: repeat(4, minmax(115px, 1fr)) minmax(160px, 1.4fr); gap: 10px; }
+.dash-filter-row .form-field { margin-bottom: 0; }
+.dash-filter-aksi { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; align-items: center; }
+
+.dash-list-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.dash-list-head h2 { font-family: var(--font-head); font-size: clamp(.95rem, 1.7vw, 1.1rem); color: var(--navy); text-transform: uppercase; letter-spacing: .4px; }
+.dash-jumlah { background: var(--red); color: #fff; border-radius: 999px; font-family: var(--font-body); font-size: .72rem; padding: 2px 10px; vertical-align: middle; }
+.dash-list { display: flex; flex-direction: column; gap: 12px; }
+.dash-item { background: var(--paper); border: 2px solid var(--line); border-left: 6px solid var(--red); border-radius: var(--r-md); padding: 14px 16px; }
+.dl-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.dl-status { font-size: .64rem; font-weight: 800; text-transform: uppercase; letter-spacing: .4px; border-radius: 999px; padding: 3px 11px; background: var(--red); color: #fff; }
+.dl-status.diproses { background: var(--yellow-2); color: #4A3700; }
+.dl-status.selesai { background: var(--green-dk); }
+.dl-status.tidak-ditangani { background: #6B7280; }
+.dl-waktu { font-size: .72rem; color: var(--ink-3); font-weight: 700; margin-left: auto; }
+.dl-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.dl-badge { font-size: .64rem; font-weight: 800; text-transform: uppercase; background: var(--blue); color: #fff; border-radius: 999px; padding: 2px 10px; }
+.dl-badge.anonim { background: #7C3AED; }
+.dl-meta-i { font-size: .68rem; font-weight: 800; color: var(--ink-2); background: #F1F5F9; border-radius: 999px; padding: 2px 10px; }
+.dl-isi { font-size: .88rem; color: var(--ink); white-space: pre-wrap; word-break: break-word; margin: 0 0 10px !important; }
+.dl-aksi { display: flex; flex-wrap: wrap; gap: 7px; }
+.dl-btn { background: #fff; border: 2px solid var(--line); border-radius: 999px; font-size: .68rem; font-weight: 800; padding: 5px 12px; cursor: pointer; color: var(--ink-2); transition: background .16s, border-color .16s; }
+.dl-btn:hover { background: #F1F5F9; border-color: #CBD5E1; }
+.dl-btn.ok { border-color: var(--green); color: var(--green-dk); }
+.dl-btn.ok:hover { background: #F5FBF0; }
+.dl-btn.del { border-color: #F3C0C0; color: var(--red); margin-left: auto; }
+.dl-btn.del:hover { background: #FEF2F2; }
+.dl-btn:disabled { opacity: .5; cursor: not-allowed; }
+.dash-empty, .dash-muat { text-align: center; color: var(--ink-3); font-size: .86rem; font-style: italic; padding: 26px 10px; }
+.dash-muat.err { color: var(--red); font-style: normal; font-weight: 800; }
+
 /* ---------- 8. RESPONSIF ---------- */
 @media (max-width: 1000px) {
   .bentuk-grid { grid-template-columns: repeat(2, 1fr); }
@@ -845,12 +1027,27 @@ a { color: inherit; }
   .d-title { font-size: 1.8rem; }
 }
 
+/* ---------- 8b. RESPONSIF DASHBOARD & KANAL ---------- */
+@media (max-width: 900px) {
+  .dash-stats { grid-template-columns: repeat(3, 1fr); }
+  .dash-filter-row { grid-template-columns: repeat(2, 1fr); }
+  .lapor-extra { grid-template-columns: 1fr; }
+  .lapor-qr { text-align: left; }
+}
+
+@media (max-width: 560px) {
+  .dash-stats { grid-template-columns: repeat(2, 1fr); }
+  .dash-filter-row { grid-template-columns: 1fr; }
+  .dl-btn.del { margin-left: 0; }
+}
+
 /* ---------- 9. CETAK ---------- */
 @page { size: A4 portrait; margin: 12mm; }
 
 @media print {
   body { background: #fff; }
   .topnav, .dnav, .totop, .dnav-jump { display: none !important; }
+  .foot-dash { display: none !important; }
   .reveal { opacity: 1 !important; transform: none !important; }
   .hero-inner { padding: 10mm 0; min-height: 118mm; }
   .blk { padding: 8mm 0; break-inside: avoid; page-break-inside: avoid; }

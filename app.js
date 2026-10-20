@@ -101,6 +101,37 @@
         if (history.replaceState) history.replaceState(null, "", "#" + id);
       });
     });
+
+    /* Kanal pengaduan di blok poster (dari config.js) */
+    var kanal = document.getElementById("laporKanal");
+    if (kanal) {
+      var c = window.KONFIG || {};
+      var html = "";
+      if (c.whatsapp) {
+        html += '<li><a href="https://wa.me/' + esc(String(c.whatsapp).replace(/\D/g, "")) +
+          '" target="_blank" rel="noopener"><strong>WhatsApp</strong> ' +
+          esc(c.namaLayanan || "Bimbingan & Konseling") + '</a></li>';
+      }
+      if (c.email) {
+        html += '<li><a href="mailto:' + esc(c.email) +
+          '?subject=Laporan%20Pengaduan%20Bullying"><strong>Email</strong> ' +
+          esc(c.email) + '</a></li>';
+      }
+      html += "<li><strong>Kotak aduan</strong> &mdash; ruang BK / pos piket sekolah</li>";
+      html += "<li><strong>Guru BK / wali kelas</strong> &mdash; bisa langsung dihubungi di sekolah</li>";
+      kanal.innerHTML = html;
+    }
+
+    /* QR code untuk versi cetak poster */
+    var qrBox = document.getElementById("laporQr");
+    if (qrBox) {
+      var urlLapor = location.href.split("#")[0].replace(/[^/]*$/, "") + "detail.html#pengaduan";
+      qrBox.innerHTML =
+        '<img src="https://api.qrserver.com/v1/create-qr-code/?size=170x170&margin=8&data=' +
+        encodeURIComponent(urlLapor) +
+        '" alt="QR code halaman pengaduan bullying" width="118" height="118">' +
+        "<span>Scan untuk buka form pengaduan</span>";
+    }
   }
 
   /* =========================================================
@@ -215,12 +246,60 @@
   }
 
   /* =========================================================
+     KANAL PENGADUAN — WhatsApp / Email / Salin teks
+     ========================================================= */
+  function konf() { return window.KONFIG || {}; }
+
+  function bangunTeks(item) {
+    var c = konf();
+    var baris = [
+      "LAPORAN PENGADUAN BULLYING",
+      c.namaSekolah ? "Sekolah: " + c.namaSekolah : null,
+      "Tanggal: " + formatDate(item.ts),
+      "Mode: " + (item.anonim ? "ANONIM (tanpa nama)" : "Terbuka"),
+      item.anonim ? null : "Nama: " + (item.nama || "-"),
+      "Status pelapor: " + (item.kelas || "-"),
+      "Bentuk bullying: " + (item.bentuk || "-"),
+      "",
+      "Detail kejadian:",
+      item.isi
+    ];
+    return baris.filter(function (x) { return x !== null && x !== undefined; }).join("\n");
+  }
+
+  function urlWa(text) {
+    var c = konf();
+    if (!c.whatsapp) return "";
+    var no = String(c.whatsapp).replace(/\D/g, "");
+    return "https://wa.me/" + no + "?text=" + encodeURIComponent(text);
+  }
+
+  function urlMail(text) {
+    var c = konf();
+    if (!c.email) return "";
+    var sub = "Laporan Pengaduan Bullying" + (c.namaSekolah ? " - " + c.namaSekolah : "");
+    return "mailto:" + c.email +
+      "?subject=" + encodeURIComponent(sub) +
+      "&body=" + encodeURIComponent(text);
+  }
+
+  /* =========================================================
      FORMULIR PENGADUAN
      ========================================================= */
   function formMarkup() {
     return (
       '<section class="dform">' +
         "<h3>Formulir Pengaduan</h3>" +
+        '<div class="saluran">' +
+          "<h4>Saluran Pelaporan yang Tersedia</h4>" +
+          '<ul class="d-list">' +
+            "<li><strong>Formulir ini</strong> &mdash; Laporan langsung masuk ke dashboard guru, tanpa perantara.</li>" +
+            "<li><strong>Kotak aduan</strong> &mdash; Kotak aduan anonim di ruang BK atau pos piket sekolah.</li>" +
+            "<li><strong>Konseling BK</strong> &mdash; Wawancara langsung dengan Guru Bimbingan dan Konseling.</li>" +
+            "<li><strong>Orang tua / wali</strong> &mdash; Penyampaian resmi dari rumah untuk tindak lanjut sekolah.</li>" +
+          "</ul>" +
+          '<div class="kanal-aksi" id="kanalAksi"></div>' +
+        "</div>" +
         '<div class="anonim-box">' +
           '<input type="checkbox" id="anonim" name="anonim">' +
           '<label for="anonim">Saya ingin melapor secara <strong>Anonim / Rahasia</strong></label>' +
@@ -243,7 +322,7 @@
           '<label for="bentuk">Bentuk Bullying yang Dilaporkan</label>' +
           '<select id="bentuk" name="bentuk">' +
             "<option>Fisik</option><option>Verbal</option><option>Sosial / Relasional</option>" +
-            "<option>Non-Verbal</option><option>Cyber</option>" +
+            "<option>Non-Verbal</option><option>Cyber</option><option>Lainnya</option>" +
           "</select>" +
         "</div>" +
         '<div class="form-field">' +
@@ -256,10 +335,11 @@
           '<button type="reset" class="btn-reset">Reset</button>' +
         "</div>" +
         '<p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>' +
+        '<p class="form-extra" id="formExtra"></p>' +
       "</section>" +
       '<section class="riwayat">' +
         '<div class="riwayat-head">' +
-          "<h3>Riwayat Laporan Saya</h3>" +
+          "<h3>Riwayat di Perangkat Ini</h3>" +
           '<button type="button" class="btn-reset sm" id="btnClearAll">Hapus Semua</button>' +
         "</div>" +
         '<ul class="riwayat-list" id="riwayatList"></ul>' +
@@ -320,6 +400,9 @@
     var msg = document.getElementById("formMsg");
     var counter = document.getElementById("charCount");
     var clearAll = document.getElementById("btnClearAll");
+    var kanalAksi = document.getElementById("kanalAksi");
+    var formExtra = document.getElementById("formExtra");
+    var btnKirim = form.querySelector(".btn-kirim");
 
     laporan.addEventListener("input", function () {
       counter.textContent = laporan.value.length;
@@ -335,6 +418,73 @@
         nama.placeholder = "Contoh: Rafly Pratama";
       }
     });
+
+    /* Tombol kanal: WhatsApp / Email / Salin — diisi dari config.js */
+    function isiKanalAksi() {
+      if (!kanalAksi) return;
+      var c = konf();
+      var html = "";
+      if (c.whatsapp) html += '<button type="button" class="btn-kanal btn-wa" id="btnWa">Kirim via WhatsApp</button>';
+      if (c.email) html += '<button type="button" class="btn-kanal btn-mail" id="btnMail">Kirim via Email</button>';
+      html += '<button type="button" class="btn-kanal btn-copy" id="btnCopy">Salin teks laporan</button>';
+      kanalAksi.innerHTML = html;
+
+      function isiSekarang() {
+        return {
+          ts: Date.now(),
+          anonim: anonim.checked,
+          nama: anonim.checked ? "" : (nama.value.trim() || "Tanpa Nama"),
+          kelas: kelas.value,
+          bentuk: bentuk.value,
+          isi: (laporan.value || "").trim()
+        };
+      }
+
+      function wajibIsi() {
+        var t = isiSekarang();
+        if (t.isi.length < 10) {
+          toast("Isi detail kejadian dulu (minimal 10 karakter).");
+          laporan.focus();
+          return null;
+        }
+        return t;
+      }
+
+      var btnWa = document.getElementById("btnWa");
+      if (btnWa) {
+        btnWa.addEventListener("click", function () {
+          var t = wajibIsi();
+          if (t) window.open(urlWa(bangunTeks(t)), "_blank", "noopener");
+        });
+      }
+
+      var btnMail = document.getElementById("btnMail");
+      if (btnMail) {
+        btnMail.addEventListener("click", function () {
+          var t = wajibIsi();
+          if (t) window.location.href = urlMail(bangunTeks(t));
+        });
+      }
+
+      var btnCopy = document.getElementById("btnCopy");
+      if (btnCopy) {
+        btnCopy.addEventListener("click", function () {
+          var t = wajibIsi();
+          if (!t) return;
+          var teks = bangunTeks(t);
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(teks).then(function () {
+              toast("Teks laporan disalin. Tempel ke WhatsApp atau email guru.");
+            }, function () {
+              toast("Gagal menyalin otomatis — salin manual dari isian form.");
+            });
+          } else {
+            toast("Browser tidak mendukung salin otomatis — salin manual dari form.");
+          }
+        });
+      }
+    }
+    isiKanalAksi();
 
     if (clearAll) {
       clearAll.addEventListener("click", function () {
@@ -353,6 +503,7 @@
       e.preventDefault();
       msg.textContent = "";
       msg.className = "form-msg";
+      if (formExtra) formExtra.innerHTML = "";
 
       var isi = laporan.value.trim();
       if (isi.length < 10) {
@@ -375,21 +526,57 @@
         isi: isi
       };
 
+      /* Simpan lokal sebagai cadangan + riwayat di perangkat ini */
       var list = loadReports();
       list.unshift(item);
-      var ok = saveReports(list);
+      saveReports(list);
       renderReports();
 
-      form.reset();
-      counter.textContent = "0";
-      nama.disabled = false;
-      nama.placeholder = "Contoh: Rafly Pratama";
+      if (btnKirim) btnKirim.disabled = true;
 
-      msg.textContent = ok
-        ? "Laporan tersimpan. Terima kasih sudah berani melapor!"
-        : "Laporan tersimpan (penyimpanan peramban tidak aktif, data hanya untuk sesi ini).";
-      msg.classList.add("ok");
-      toast("Laporan berhasil dikirim. Terima kasih!");
+      var kirim = (window.API && window.API.kirimLaporan)
+        ? window.API.kirimLaporan(item)
+        : Promise.resolve({ ok: false, alasan: "backend belum dikonfigurasi" });
+
+      kirim.then(function (res) {
+        if (btnKirim) btnKirim.disabled = false;
+
+        form.reset();
+        counter.textContent = "0";
+        nama.disabled = false;
+        nama.placeholder = "Contoh: Rafly Pratama";
+        isiKanalAksi();
+
+        if (res.ok) {
+          msg.textContent = "Laporan terkirim dan sudah masuk ke dashboard guru. Terima kasih sudah berani melapor!";
+          msg.classList.add("ok");
+          toast("Laporan berhasil dikirim.");
+          if (formExtra && konf().whatsapp) {
+            formExtra.innerHTML =
+              'Ingin mengirim salinan juga ke guru? <a href="' + esc(urlWa(bangunTeks(item))) +
+              '" target="_blank" rel="noopener">Kirim via WhatsApp</a>.';
+          }
+        } else {
+          msg.textContent = "Laporan belum sampai ke server (" + res.alasan + "). Laporan tetap tersimpan di perangkat ini — kirim ulang lewat WhatsApp/email, atau hubungi guru BK secara langsung.";
+          msg.classList.add("err");
+          toast("Laporan belum terkirim. Gunakan tombol WhatsApp.");
+          if (formExtra) {
+            var link = "";
+            if (konf().whatsapp) {
+              link += '<a class="btn-kanal btn-wa sm" href="' + esc(urlWa(bangunTeks(item))) + '" target="_blank" rel="noopener">Kirim via WhatsApp</a> ';
+            }
+            if (konf().email) {
+              link += '<a class="btn-kanal btn-mail sm" href="' + esc(urlMail(bangunTeks(item))) + '">Kirim via Email</a>';
+            }
+            formExtra.innerHTML = link;
+          }
+        }
+      }, function (err) {
+        if (btnKirim) btnKirim.disabled = false;
+        msg.textContent = "Terjadi kesalahan saat mengirim. Laporan tersimpan di perangkat ini — " +
+          ((err && err.message) || "silakan coba lagi.");
+        msg.classList.add("err");
+      });
     }
 
     function renderReports() {
