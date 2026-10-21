@@ -22,17 +22,38 @@
 window.KONFIG = {
 
   /* ---------- Supabase ---------- */
-  supabaseUrl: "https://xteetateumdzgczwcfdm.supabase.co/rest/v1/",
+  /* Isi dengan "Project URL" dari Dashboard Supabase > Settings > API.
+     Boleh ditulis lengkap dengan "/rest/v1" atau tidak — api.js
+     menormalkan sendiri, jadi tidak akan terjadi "/rest/v1/rest/v1". */
+  supabaseUrl: "https://xteetateumdzgczwcfdm.supabase.co",
   supabaseAnonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh0ZWV0YXRldW1kemdjendjZmRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI1MjA3ODcsImV4cCI6MjEwODA5Njc4N30.ZU1hkxa6XwdYEtfALVg4L0_gKD_BlkeoLvbe3RAiFR4",
+
+  /* ---------- Identitas tugas kelompok ---------- */
+  penerbit: "Universitas Siliwangi",
+  namaKelompok: "Kelompok 3",
+  judulTugas: "Poster Edukasi & Pencegahan Bullying",
+  fakultas: "Fakultas Ilmu Sosial dan Ilmu Politik",
+  angkatan: "2026",
+
+  /* Daftar anggota kelompok — ganti dengan nama & NIM asli.
+     Boleh format: "Nama — NIM" atau cukup "Nama". */
+  anggota: [
+    "Nama Anggota 1",
+    "Nama Anggota 2",
+    "Nama Anggota 3",
+    "Nama Anggota 4",
+    "Nama Anggota 5"
+  ],
+
+  /* ---------- Konteks laporan ---------- */
+  /* Sekolah sasaran tempat poster ini digunakan (bukan penerbit). */
+  namaSekolah: "SMP Negeri 1",
+  namaLayanan: "Bimbingan & Konseling",
 
   /* ---------- Kanal manual ---------- */
   /* Format internasional tanpa "+" dan tanpa spasi, mis. 6285659070362 */
   whatsapp: "6285659070362",
   email: "bk@sekolah.sch.id",
-
-  /* ---------- Identitas ---------- */
-  namaSekolah: "SMP Negeri 1",
-  namaLayanan: "Bimbingan & Konseling",
 
   /* ---------- Batas ---------- */
   maxIsi: 500

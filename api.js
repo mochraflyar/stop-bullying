@@ -15,8 +15,35 @@
 
   function cfg() { return window.KONFIG || {}; }
 
+  /* URL dasar proyek Supabase.
+
+     PENTING: fungsi ini menormalkan input supaya aman baik diisi
+     sebagai  "https://xxx.supabase.co"  maupun
+                 "https://xxx.supabase.co/rest/v1"  (dengan atau
+                 tanpa garis miring di akhir).
+
+     Hasilnya SELALU akar proyek TANPA "/rest/v1", karena semua
+     pemanggilan di bawah sudah menambah sendiri segmen jalannya:
+       rest("/laporan")  -> .../rest/v1/laporan
+       auth("/token")    -> .../auth/v1/token
+
+     (Kalau "/rest/v1" ikut terpasang dua kali, alamatnya salah dan
+     server membalas 404 — itu penyebab laporan gagal terkirim.) */
   function base() {
-    return String(cfg().supabaseUrl || "").replace(/\/+$/, "");
+    var u = String(cfg().supabaseUrl || "").trim();
+    u = u.replace(/\/+$/, "");          /* buang garis miring di akhir */
+    u = u.replace(/\/rest\/v1$/i, "");   /* buang "/rest/v1" bila ada  */
+    return u;
+  }
+
+  /* URL endpoint tabel (REST) */
+  function rest(path) {
+    return base() + "/rest/v1" + path;
+  }
+
+  /* URL endpoint autentikasi */
+  function auth(path) {
+    return base() + "/auth/v1" + path;
   }
 
   function kunci() {
@@ -28,12 +55,17 @@
     return !!(base() && kunci());
   }
 
-  function headers(token) {
+  /* Header permintaan.
+     "prefer" dipakai untuk "return=minimal" saat INSERT, supaya
+     PostgREST tidak perlu hak SELECT untuk mengembalikan baris —
+     itu yang membuat tabel "laporan" tetap write-only bagi peran anon. */
+  function headers(token, prefer) {
     var h = {
       "apikey": kunci(),
       "Content-Type": "application/json"
     };
     h["Authorization"] = "Bearer " + (token || kunci());
+    if (prefer) h["Prefer"] = prefer;
     return h;
   }
 
@@ -55,25 +87,41 @@
     });
   }
 
-  function pesanGagal(res, fallback) {
+  /* Baca body error dari PostgREST: { code, message, hint, details } */
+  function bacaBad(res) {
     return res.text().then(function (t) {
-      var pesan = fallback || "Permintaan ditolak server.";
-      try {
-        var d = JSON.parse(t);
-        if (d && (d.message || d.error_description || d.error)) {
-          pesan = d.message || d.error_description || (typeof d.error === "string" ? d.error : pesan);
-        }
-        if (d && d.hint) pesan += " (" + d.hint + ")";
-      } catch (e) { /* body bukan JSON, pakai fallback */ }
+      var d = null;
+      try { d = JSON.parse(t); } catch (e) { d = null; }
+      var pesan = "";
+      if (d) {
+        pesan = d.message || d.error_description || "";
+        if (!pesan && typeof d.error === "string") pesan = d.error;
+      }
+      return {
+        kode: (d && d.code) || "",
+        pesan: pesan,
+        hint: (d && d.hint) || ""
+      };
+    });
+  }
+
+  function pesanGagal(res, fallback) {
+    return bacaBad(res).then(function (b) {
+      var pesan = b.pesan || fallback || "Permintaan ditolak server.";
+      if (b.hint) pesan += " (" + b.hint + ")";
       return new Error(pesan);
     });
   }
 
-  /* 42501 = role tidak punya GRANT, atau policy RLS menolak.
-     Penyebabnya konfigurasi database, bukan kesalahan siswa. */
-  function masalahIzin(res, alasan) {
-    if (res.status !== 401 && res.status !== 403 && res.status !== 42501) return null;
-    return "server menolak akses (" + res.status + ")";
+  /* PostgreSQL 42501 = insufficient_privilege.
+     PostgREST membalas HTTP 401/403 untuk kode itu, sedangkan kode
+     aslinya ada di body JSON ("code": "42501") — jadi keduanya
+     perlu dicek. Penyebabnya konfigurasi database (GRANT/RLS),
+     bukan kesalahan siswa. */
+  function masalahIzin(res, bad) {
+    if (bad && bad.kode === "42501") return "server menolak akses (kode 42501)";
+    if (res.status === 401 || res.status === 403) return "server menolak akses (" + res.status + ")";
+    return null;
   }
 
   var API = {
@@ -96,17 +144,20 @@
         isi: item.isi,
         status: "baru"
       };
-      return denganTimeout(base() + "/rest/v1/laporan", {
+      return denganTimeout(rest("/laporan"), {
         method: "POST",
-        headers: headers(null),
+        headers: headers(null, "return=minimal"),
         body: JSON.stringify(body)
       }, 10000).then(function (res) {
         if (res.ok) return { ok: true };
-        var izin = masalahIzin(res);
-        return pesanGagal(res, "Server menolak laporan (" + res.status + ").").then(function (e) {
+        return bacaBad(res).then(function (b) {
+          var izin = masalahIzin(res, b);
           /* Detail teknis hanya ke console — siswa tidak perlu lihat kode error */
-          if (window.console && console.warn) console.warn("[STOP BULLYING] Gagal kirim laporan:", e.message);
-          return { ok: false, alasan: izin || e.message };
+          if (window.console && console.warn) {
+            console.warn("[STOP BULLYING] Gagal kirim laporan:",
+              res.status, izin || b.pesan || "(tanpa pesan)");
+          }
+          return { ok: false, alasan: izin || b.pesan || ("Server menolak laporan (" + res.status + ").") };
         });
       }, function () {
         return { ok: false, alasan: "tidak ada koneksi ke server" };
@@ -119,9 +170,9 @@
       if (!siap()) {
         return Promise.reject(new Error("Backend belum dikonfigurasi. Isi config.js terlebih dahulu."));
       }
-      return denganTimeout(base() + "/auth/v1/token?grant_type=password", {
+      return denganTimeout(auth("/token?grant_type=password"), {
         method: "POST",
-        headers: { "apikey": kunci(), "Content-Type": "application/json" },
+        headers: headers(null),
         body: JSON.stringify({ email: email, password: password })
       }, 12000).then(function (res) {
         return res.json().then(function (d) {
@@ -137,9 +188,9 @@
 
     refresh: function (refreshToken) {
       if (!siap() || !refreshToken) return Promise.reject(new Error("Sesi tidak bisa diperpanjang."));
-      return denganTimeout(base() + "/auth/v1/token?grant_type=refresh_token", {
+      return denganTimeout(auth("/token?grant_type=refresh_token"), {
         method: "POST",
-        headers: { "apikey": kunci(), "Content-Type": "application/json" },
+        headers: headers(null),
         body: JSON.stringify({ refresh_token: refreshToken })
       }, 12000).then(function (res) {
         return res.json().then(function (d) {
@@ -160,7 +211,7 @@
       if (opsi.dari) q += "&dibuat_at=gte." + encodeURIComponent(opsi.dari + "T00:00:00.000Z");
       if (opsi.sampai) q += "&dibuat_at=lte." + encodeURIComponent(opsi.sampai + "T23:59:59.999Z");
       if (opsi.cari) q += "&isi=ilike.*" + encodeURIComponent(opsi.cari) + "*";
-      return denganTimeout(base() + "/rest/v1/laporan" + q, {
+      return denganTimeout(rest("/laporan" + q), {
         method: "GET",
         headers: headers(token)
       }, 15000).then(function (res) {
@@ -171,7 +222,7 @@
     },
 
     ubahStatus: function (token, id, status) {
-      return denganTimeout(base() + "/rest/v1/laporan?id=eq." + encodeURIComponent(id), {
+      return denganTimeout(rest("/laporan?id=eq." + encodeURIComponent(id)), {
         method: "PATCH",
         headers: headers(token),
         body: JSON.stringify({ status: status })
@@ -183,7 +234,7 @@
     },
 
     hapusLaporan: function (token, id) {
-      return denganTimeout(base() + "/rest/v1/laporan?id=eq." + encodeURIComponent(id), {
+      return denganTimeout(rest("/laporan?id=eq." + encodeURIComponent(id)), {
         method: "DELETE",
         headers: headers(token)
       }, 10000).then(function (res) {

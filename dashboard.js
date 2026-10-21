@@ -130,7 +130,8 @@
     loginSec.hidden = true;
     panelSec.hidden = false;
     var c = window.KONFIG || {};
-    dashSekolah.textContent = c.namaSekolah || "STOP BULLYING";
+    dashSekolah.textContent = (c.penerbit || "STOP BULLYING") +
+      (c.namaKelompok ? " \u2014 " + c.namaKelompok : "");
     dashUser.textContent = "Masuk sebagai " + (SESI.email || "-");
   }
 
@@ -366,6 +367,11 @@
       konf.textContent = "Terhubung ke backend. Laporan yang dikirim dari form pengaduan akan muncul di sini.";
       konf.classList.add("ok");
     }
+
+    /* Identitas tugas kelompok di footer */
+    var fp = el("footPenerbit"), fk = el("footKelompok");
+    if (fp) fp.textContent = c.penerbit || "Universitas Siliwangi";
+    if (fk) fk.textContent = c.namaKelompok || "Kelompok";
 
     SESI = bacaSesi();
     if (SESI) {

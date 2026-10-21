@@ -9,6 +9,111 @@
 window.TOPIK = {
 
   /* -------------------------------------------------------
+     0. TUJUAN MATERI
+     ------------------------------------------------------- */
+  "tujuan": {
+    judul: "TUJUAN MATERI HARI INI",
+    sub: "Apa yang akan kita kuasai di akhir sesi",
+    tag: "Pengantar",
+    definisi: "Sesi ini bukan sekadar hafalan. Setelah selesai, kamu diharapkan bisa mengenali bullying di sekitar, membedakan mana bercanda dan mana perundungan, serta tahu langkah yang benar saat menghadapinya.",
+    bagian: [
+      {
+        id: "b-tujuan",
+        judul: "Tiga Tujuan Utama",
+        list: [
+          "<strong>Memahami apa itu bullying yang sebenarnya.</strong> Bukan sekadar menghafal definisi, tapi bisa menjelaskannya dengan bahasa sendiri dan menunjukkan elemen kuncinya.",
+          "<strong>Bisa membedakan dengan jelas mana <em>Bullying</em> dan mana <em>Bercanda</em>.</strong> Bukan berdasarkan terasa lucu atau tidak, tapi berdasarkan ciri, niat pelaku, dan reaksi korbannya.",
+          "<strong>Tahu dampaknya, cara menghadapinya, dan bagaimana cara mencegahnya bersama.</strong> Mengetahui apa yang harus dilakukan baik sebagai korban, pelaku, maupun bystander."
+        ]
+      },
+      {
+        id: "b-alur",
+        judul: "Alur Bahasan",
+        list: [
+          "<strong>Definisi &amp; elemen kunci</strong> — seperti apa bullying yang sebenarnya.",
+          "<strong>Bentuk-bentuk bullying</strong> — fisik, verbal, sosial, dan cyber.",
+          "<strong>Bercanda vs bullying</strong> — bagian paling penting dari sesi ini.",
+          "<strong>Dampak</strong> — bagi korban, pelaku, dan bystander.",
+          "<strong>Cara menghadapi &amp; pencegahan</strong> — langkah nyata di sekolah.",
+          "<strong>Dasar hukum</strong> — konsekuensi hukum di Indonesia."
+        ]
+      }
+    ],
+    terkait: ["bercanda", "apa-itu", "dampak", "hindari-anak"]
+  },
+
+  /* -------------------------------------------------------
+     0b. BERCANDA ATAU BULLYING?  (kunci materi)
+     ------------------------------------------------------- */
+  "bercanda": {
+    judul: "BERCANDA ATAU BULLYING?",
+    sub: "Cara membedakannya dalam satu detik",
+    tag: "Kunci Materi",
+    definisi: "Tidak semua yang terlihat seperti bercanda itu benar-benar bercanda. Perbedaannya bukan pada apa yang dikatakan, tetapi pada niat pelaku, cara korbannya bereaksi, dan apakah jarak kekuasaan di antara mereka berimbang.",
+    catatan: "Bercanda yang baik itu berhenti ketika temannya tidak nyaman. Kalau terus dilanjutkan setelah korban tidak nyaman, itu sudah bukan bercanda, itu bullying.",
+    bagian: [
+      {
+        id: "b-bandingkan",
+        judul: "Ciri Bercanda vs Ciri Bullying",
+        banding: {
+          kiri: {
+            judul: "Ciri Bercanda (Bukan Bullying)",
+            items: [
+              "Dilakukan <strong>suka sama suka</strong>, semua yang terlibat ikut tertawa.",
+              "Tidak ada niat untuk menyakiti atau merendahkan.",
+              "Jika salah satu bilang &ldquo;jangan&rdquo; atau &ldquo;ga lucu&rdquo;, <strong>langsung berhenti</strong> dan meminta maaf.",
+              "Tidak ada ketimpangan kekuasaan, semua setara.",
+              "Terjadi di situasi yang nyaman untuk semua pihak."
+            ]
+          },
+          kanan: {
+            judul: "Ciri Bullying (Berbahaya)",
+            items: [
+              "Hanya <strong>satu pihak yang tertawa</strong>, pihak lain terlihat sedih, diam, marah, atau tersinggung.",
+              "Ada niat menyakiti, menjatuhkan, atau menunjukkan dominasi.",
+              "Terus berlanjut walaupun korban sudah bilang berhenti, tidak suka, atau menjauh.",
+              "Ada <strong>ketimpangan kekuatan</strong>: pelaku lebih kuat, lebih populer, lebih banyak teman.",
+              "Korban merasa takut, malu, dan tidak berdaya untuk melawan."
+            ]
+          }
+        }
+      },
+      {
+        id: "b-contoh",
+        judul: "Contoh di Kehidupan Sekolah",
+        contoh: [
+          {
+            label: "Bercanda",
+            ok: true,
+            teks: "Memanggil teman dengan panggilan lucu dan teman itu juga memanggil balik dengan panggilan lucu."
+          },
+          {
+            label: "Bullying",
+            ok: false,
+            teks: "Memanggil teman dengan julukan jelek terus-menerus di depan kelas sampai teman itu menangis dan tidak berani masuk kelas."
+          }
+        ]
+      },
+      {
+        id: "b-jika-pelaku",
+        judul: "Kalau Kamu Pelaku &ldquo;Bercanda&rdquo;",
+        list: [
+          "Jangan tersinggung kalau ditegur teman &mdash; itu tandanya temanmu <strong>tidak nyaman</strong>.",
+          "<strong>Berhenti</strong> dan minta maaf. Itu cara menjadi teman baik.",
+          "Jangan membela diri dengan alasan &ldquo;cuma bercanda&rdquo; &mdash; kalau memang tidak menyakitkan, kamu tidak perlu dibantah.",
+          "Cara terbaik untuk menjadi teman baik adalah berhenti &mdash; bukan membela diri dengan kata &ldquo;baper&rdquo;."
+        ]
+      },
+      {
+        id: "b-empati",
+        judul: "Empati di Depan Mata",
+        teks: "Bayangkan kamu yang digilir, diejek, atau dikucilkan setiap hari. Pasti tidak enak. Sialnya, <strong>tidak semua orang senang melihat orang lain tersakiti</strong> &mdash; banyak yang hanya memilih tidak ikut campur. Bercanda yang kita anggap sepele bisa jadi luka yang bertahan lama bagi orang lain."
+      }
+    ],
+    terkait: ["apa-itu", "fisik", "verbal", "sosial", "cyber", "dampak"]
+  },
+
+  /* -------------------------------------------------------
      1. APA ITU BULLYING?
      ------------------------------------------------------- */
   "apa-itu": {
@@ -16,7 +121,7 @@ window.TOPIK = {
     sub: "Pengertian, elemen kunci, dan bentuknya",
     tag: "Dasar",
     definisi: "Bullying (perundungan) adalah tindakan agresif yang dilakukan secara sengaja dan berulang kali oleh seseorang atau sekelompok orang yang memiliki kekuatan atau kekuasaan lebih besar terhadap individu lain yang merasa tidak berdaya, dengan tujuan merugikan atau menyakiti secara fisik maupun psikologis.",
-    catatan: "Bullying tidak hanya berupa pukulan atau kekerasan fisik. Kata-kata kasar, pengasingan, dan penyebaran berita bohong melalui media sosial juga termasuk bullying.",
+    catatan: "Bullying tidak hanya berupa pukulan atau kekerasan fisik. Kata-kata kasar, pengasingan, dan penyebaran berita bohong melalui media sosial juga termasuk bullying. Kalau salah satu dari tiga elemen kunci hilang — terutama kesengajaan menyakiti dan keberulangan — kemungkinan besar itu bukan bullying, melainkan bercanda atau konflik biasa.",
     bagian: [
       {
         id: "b-define",
@@ -143,7 +248,7 @@ window.TOPIK = {
      4. BULLYING SOSIAL / RELASIONAL
      ------------------------------------------------------- */
   "sosial": {
-    judul: "BULLYING SOSIAL",
+    judul: "BULLYING SOSIAL / RELASIONAL",
     sub: "Pengasingan, gosip, dan perusak reputasi",
     tag: "Bentuk Bullying",
     definisi: "Bullying relasional atau sosial adalah tindakan yang merusak reputasi atau hubungan sosial seseorang secara halus — tanpa sentuhan fisik dan tanpa suara keras. Korban tetap merasa tersakiti, tetapi sering kali tidak bisa menunjukkan luka yang jelas.",
@@ -466,6 +571,10 @@ window.TOPIK = {
 
 /* Pemetaan hash -> [topik, id bagian yang dituju] */
 window.HASH_TOPIK = {
+  "tujuan": ["tujuan", null],
+  "bercanda": ["bercanda", null],
+  "bercanda-bandingkan": ["bercanda", "b-bandingkan"],
+  "bercanda-contoh": ["bercanda", "b-contoh"],
   "apa-itu": ["apa-itu", null],
   "fisik": ["fisik", null],
   "verbal": ["verbal", null],

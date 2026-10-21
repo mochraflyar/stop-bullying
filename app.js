@@ -8,9 +8,63 @@
 (function () {
   "use strict";
 
+  /* =========================================================
+     PENYIMPANAN LOKAL (riwayat laporan)
+     ------------------------------------------------------------
+     WAJIB dideklarasikan di sini, DI ATAS pemanggilan initDetail().
+     Variabel yang di-"var" baru mendapat nilainya saat baris ini
+     dieksekusi. Kalau deklarasi ini diletakkan di bawah, nilainya
+     masih undefined ketika initDetail() -> initForm() ->
+     renderReports() -> loadReports() dipanggil, dan hasilnya
+     "Cannot read properties of undefined" —(form mati sebelum
+     sempat mengirim laporan).
+     ========================================================= */
+  var STORAGE_KEY = "stopbullying.laporan.v1";
+  var memoryStore = [];
+
   var isDetail = document.body.classList.contains("detail-body");
+  isiIdentitas();
   if (isDetail) initDetail();
   else initPoster();
+
+  /* =========================================================
+     IDENTITAS TUGAS KELOMPOK (dari config.js)
+     ========================================================= */
+  function isiIdentitas() {
+    var c = window.KONFIG || {};
+    var terisi = {
+      timPenerbit: c.penerbit || "Universitas Siliwangi",
+      timKelompok: c.namaKelompok || "Kelompok",
+      footPenerbit: c.penerbit || "Universitas Siliwangi",
+      footKelompok: c.namaKelompok || "Kelompok"
+    };
+    Object.keys(terisi).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = terisi[id];
+    });
+
+    var meta = document.getElementById("timMeta");
+    if (meta) {
+      meta.textContent = [c.fakultas, c.angkatan ? "Angkatan " + c.angkatan : ""]
+        .filter(Boolean).join(" · ");
+    }
+
+    /* Daftar anggota kelompok */
+    var ul = document.getElementById("timAnggota");
+    if (ul) {
+      var anggota = Array.isArray(c.anggota) ? c.anggota : [];
+      ul.innerHTML = "";
+      if (!anggota.length) {
+        ul.innerHTML = "<li class=\"tim-kosong\">Daftar anggota belum diisi di <code>config.js</code>.</li>";
+      } else {
+        anggota.forEach(function (nama, i) {
+          var li = document.createElement("li");
+          li.innerHTML = '<span class="tim-no">' + (i + 1) + "</span>" + esc(nama);
+          ul.appendChild(li);
+        });
+      }
+    }
+  }
 
   /* =========================================================
      POSTER UTAMA
@@ -132,6 +186,26 @@
         '" alt="QR code halaman pengaduan bullying" width="118" height="118">' +
         "<span>Scan untuk buka form pengaduan</span>";
     }
+
+    /* ------------------------------------------------------------
+       FOTO ASLI + PLACEHOLDER SVG
+       ------------------------------------------------------------
+       Setiap <img data-fallback> mencoba memuat foto dari folder img/.
+       Kalau file-nya belum ada / gagal dimuat, ilustrasi SVG placeholder
+       (elemen .gal-ph) yang ditampilkan. Jadi halaman tidak pernah
+       menampilkan gambar rusak, dan tidak perlu menyentuh kode untuk
+       mengganti placeholder dengan foto asli.
+       ------------------------------------------------------------ */
+    Array.prototype.forEach.call(document.querySelectorAll("img[data-fallback]"), function (img) {
+      var pakaiPlaceholder = function () {
+        img.hidden = true;
+        var ph = img.parentNode ? img.parentNode.querySelector(".gal-ph") : null;
+        if (ph) ph.removeAttribute("hidden");
+      };
+      img.addEventListener("error", pakaiPlaceholder);
+      /* Gambar yang gagal dimuat SEBELUM listener dipasang */
+      if (img.complete && img.naturalWidth === 0) pakaiPlaceholder();
+    });
   }
 
   /* =========================================================
@@ -186,6 +260,35 @@
         (topik.bagian || []).forEach(function (b) {
           html += '<section class="d-sec"' + (b.id ? ' id="' + b.id + '"' : "") + ">";
           html += '<h2 class="d-sec-title">' + esc(b.judul) + "</h2>";
+
+          /* Perbandingan dua kolom (mis. Bercanda vs Bullying) */
+          if (b.banding) {
+            html += '<div class="d-banding">';
+            ["kiri", "kanan"].forEach(function (sisi) {
+              var s = b.banding[sisi];
+              if (!s) return;
+              var kelas = (sisi === "kiri") ? "ok" : "bahaya";
+              html += '<div class="d-bd d-bd-' + kelas + '">';
+              html += '<h3 class="d-bd-judul">' + esc(s.judul || "") + "</h3>";
+              html += '<ul class="d-bd-list">';
+              (s.items || []).forEach(function (li) { html += "<li>" + li + "</li>"; });
+              html += "</ul></div>";
+            });
+            html += "</div>";
+          }
+
+          /* Contoh berpasangan (lucu / tidak lucu) */
+          if (b.contoh) {
+            html += '<div class="d-contoh">';
+            b.contoh.forEach(function (c) {
+              html += '<div class="d-ct' + (c.ok ? " ok" : " bahaya") + '">';
+              html += '<span class="d-ct-tag">' + esc(c.label || "") + "</span>";
+              html += '<p class="d-ct-teks">' + esc(c.teks || "") + "</p>";
+              html += "</div>";
+            });
+            html += "</div>";
+          }
+
           if (b.list) {
             html += '<ul class="d-list">';
             b.list.forEach(function (li) { html += "<li>" + li + "</li>"; });
@@ -348,10 +451,8 @@
     );
   }
 
-  var STORAGE_KEY = "stopbullying.laporan.v1";
-  var memoryStore = [];
-
   function loadReports() {
+    if (!memoryStore) memoryStore = [];
     try {
       var raw = window.localStorage.getItem(STORAGE_KEY);
       if (!raw) return memoryStore.slice();
