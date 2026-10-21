@@ -33,8 +33,11 @@
   function isiIdentitas() {
     var c = window.KONFIG || {};
     var terisi = {
+      timLabel: c.judulTugas || "Tugas Kelompok",
+      timTema: c.temaTugas || "",
       timPenerbit: c.penerbit || "Universitas Siliwangi",
       timKelompok: c.namaKelompok || "Kelompok",
+      timKelas: c.kelas || "",
       footPenerbit: c.penerbit || "Universitas Siliwangi",
       footKelompok: c.namaKelompok || "Kelompok"
     };
@@ -43,10 +46,10 @@
       if (el) el.textContent = terisi[id];
     });
 
+    /* Baris metadata: Program Studi · Fakultas */
     var meta = document.getElementById("timMeta");
     if (meta) {
-      meta.textContent = [c.fakultas, c.angkatan ? "Angkatan " + c.angkatan : ""]
-        .filter(Boolean).join(" · ");
+      meta.textContent = [c.prodi, c.fakultas].filter(Boolean).join(" · ");
     }
 
     /* Daftar anggota kelompok */
@@ -57,9 +60,13 @@
       if (!anggota.length) {
         ul.innerHTML = "<li class=\"tim-kosong\">Daftar anggota belum diisi di <code>config.js</code>.</li>";
       } else {
-        anggota.forEach(function (nama, i) {
+        anggota.forEach(function (a, i) {
+          var nama = (a && typeof a === "object") ? (a.nama || "") : String(a || "");
+          var nim = (a && typeof a === "object") ? (a.nim || "") : "";
           var li = document.createElement("li");
-          li.innerHTML = '<span class="tim-no">' + (i + 1) + "</span>" + esc(nama);
+          li.innerHTML = '<span class="tim-no">' + (i + 1) + "</span>" +
+            '<span class="tim-nama">' + esc(nama) + "</span>" +
+            (nim ? '<span class="tim-nim">' + esc(nim) + "</span>" : "");
           ul.appendChild(li);
         });
       }
@@ -160,19 +167,22 @@
     var kanal = document.getElementById("laporKanal");
     if (kanal) {
       var c = window.KONFIG || {};
+      var sekolah = c.namaSekolah || "sekolah";
+      var gds = c.namaLayanan || ("Tim GDS " + sekolah);
       var html = "";
       if (c.whatsapp) {
         html += '<li><a href="https://wa.me/' + esc(String(c.whatsapp).replace(/\D/g, "")) +
           '" target="_blank" rel="noopener"><strong>WhatsApp</strong> ' +
-          esc(c.namaLayanan || "Bimbingan & Konseling") + '</a></li>';
+          esc(gds) + '</a></li>';
       }
       if (c.email) {
         html += '<li><a href="mailto:' + esc(c.email) +
           '?subject=Laporan%20Pengaduan%20Bullying"><strong>Email</strong> ' +
           esc(c.email) + '</a></li>';
       }
-      html += "<li><strong>Kotak aduan</strong> &mdash; ruang BK / pos piket sekolah</li>";
-      html += "<li><strong>Guru BK / wali kelas</strong> &mdash; bisa langsung dihubungi di sekolah</li>";
+      html += "<li><strong>Tim GDS</strong> &mdash; " + esc(sekolah) +
+        " &mdash; bisa dihubungi langsung di sekolah</li>";
+      html += "<li><strong>Wali Kelas</strong> &mdash; bisa langsung dihubungi di sekolah</li>";
       kanal.innerHTML = html;
     }
 
@@ -355,9 +365,12 @@
 
   function bangunTeks(item) {
     var c = konf();
+    var sekolah = c.namaSekolah || "sekolah";
+    var gds = c.namaLayanan || ("Tim GDS " + sekolah);
     var baris = [
       "LAPORAN PENGADUAN BULLYING",
-      c.namaSekolah ? "Sekolah: " + c.namaSekolah : null,
+      sekolah ? "Sekolah: " + sekolah : null,
+      "Ditujukan kepada: " + gds + " / Wali Kelas",
       "Tanggal: " + formatDate(item.ts),
       "Mode: " + (item.anonim ? "ANONIM (tanpa nama)" : "Terbuka"),
       item.anonim ? null : "Nama: " + (item.nama || "-"),
@@ -390,16 +403,18 @@
      FORMULIR PENGADUAN
      ========================================================= */
   function formMarkup() {
+    var c = konf();
+    var sekolah = c.namaSekolah || "sekolah";
+    var gds = c.namaLayanan || ("Tim GDS " + sekolah);
     return (
       '<section class="dform">' +
         "<h3>Formulir Pengaduan</h3>" +
         '<div class="saluran">' +
           "<h4>Saluran Pelaporan yang Tersedia</h4>" +
           '<ul class="d-list">' +
-            "<li><strong>Formulir ini</strong> &mdash; Laporan langsung masuk ke dashboard guru, tanpa perantara.</li>" +
-            "<li><strong>Kotak aduan</strong> &mdash; Kotak aduan anonim di ruang BK atau pos piket sekolah.</li>" +
-            "<li><strong>Konseling BK</strong> &mdash; Wawancara langsung dengan Guru Bimbingan dan Konseling.</li>" +
-            "<li><strong>Orang tua / wali</strong> &mdash; Penyampaian resmi dari rumah untuk tindak lanjut sekolah.</li>" +
+            "<li><strong>Formulir ini</strong> &mdash; Laporan langsung masuk ke dashboard pengampu, tanpa perantara.</li>" +
+            "<li><strong>" + esc(gds) + "</strong> &mdash; lewat WhatsApp, atau langsung menuju ruang GDS di sekolah.</li>" +
+            "<li><strong>Wali Kelas</strong> &mdash; bisa dihubungi langsung di sekolah.</li>" +
           "</ul>" +
           '<div class="kanal-aksi" id="kanalAksi"></div>' +
         "</div>" +
@@ -649,7 +664,7 @@
         isiKanalAksi();
 
         if (res.ok) {
-          msg.textContent = "Laporan terkirim dan sudah masuk ke dashboard guru. Terima kasih sudah berani melapor!";
+          msg.textContent = "Laporan terkirim dan sudah masuk ke dashboard pengampu. Terima kasih sudah berani melapor!";
           msg.classList.add("ok");
           toast("Laporan berhasil dikirim.");
           if (formExtra && konf().whatsapp) {

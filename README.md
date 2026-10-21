@@ -1,10 +1,20 @@
 # 🛑 STOP BULLYING — Poster Interaktif & Edukasi Anti-Bullying
 
-**Poster Edukasi & Pencegahan Perilaku Bullying / Perundungan di Lingkungan Sekolah**
+**Tugas Projek Pengabdian — Tema Hukum (Bullying)**
+**Universitas Siliwangi · Program Studi Pendidikan Matematika · Fakultas Keguruan dan Ilmu Pendidikan**
 
-> **Tugas Kelompok — Universitas Siliwangi**
+> Poster Edukasi & Pencegahan Perilaku Bullying / Perundungan di Lingkungan Sekolah.
 > Situs statis berbentuk poster panjang (3 halaman) yang bisa diklik.
 > Setiap gambar dan teks membuka penjelasan lengkap tentang topik tersebut.
+
+| | |
+|---|---|
+| **Penerbit** | Universitas Siliwangi |
+| **Program Studi** | Pendidikan Matematika |
+| **Fakultas** | Keguruan dan Ilmu Pendidikan |
+| **Kelompok** | Kelompok 5 — Kelas B |
+| **Sasaran** | SMAN 8 Tasikmalaya |
+| **Kanal pengaduan** | Tim GDS SMAN 8 Tasikmalaya · Wali Kelas |
 
 ---
 
@@ -138,8 +148,19 @@ Supabase dipakai karena gratis, tidak perlu install apa pun, dan situsnya tetap
 2. Simpan **Database Password** (dipakai sekali saat membuat akun pengampu)
 3. Buka **Project Settings → API**, salin:
    - **Project URL** → `supabaseUrl`
-   - **anon public** key → `supabaseAnonKey`
+   - **Publishable key** (format `sb_publishable_...`) atau **anon public** key
+     (format lama `eyJ...`) → `supabaseAnonKey`
    - ⚠️ **Jangan** memakai key `service_role` (itinya admin penuh)
+
+> **Format key baru.** Mulai 2026 Supabase mengganti "anon key" JWT dengan
+> **publishable key** berawalan `sb_publishable_`. Keduanya tetap bisa dipakai
+> sebagai header `apikey` dan `Authorization: Bearer`, jadi `api.js` tidak perlu
+> diubah. Yang penting **jangan** pakai `service_role`.
+>
+> Kalau muncul *"Invalid API key"* padahal `config.js` sudah terisi, berarti key
+> di sana sudah **di-*regenerate*** di dashboard Supabase. Salin ulang key
+> yang terbaru dan tempel kembali. Dashboard punya pemeriksaan otomatis
+> (`API.cekKoneksi()`) yang langsung memberi tahu kalau ini terjadi.
 
 ### Langkah 2 — Buat tabel
 
@@ -149,7 +170,7 @@ Selesai — tabel `laporan`, aturan RLS, dan hak akses (GRANT) yang sesuai sudah
 ### Langkah 3 — Buat akun pengampu
 
 **Authentication → Users → Add user**
-Isi email + kata sandi (mis. `bk@sekolah.sch.id`). Akun inilah yang dipakai
+Isi email + kata sandi (mis. `gds@sman8tasikmalaya.sch.id`). Akun inilah yang dipakai
 untuk login ke dashboard.
 
 ### Langkah 4 — Isi `config.js`
@@ -161,16 +182,23 @@ window.KONFIG = {
 
   /* Identitas tugas kelompok */
   penerbit: "Universitas Siliwangi",
-  namaKelompok: "Kelompok 3",
-  fakultas: "Fakultas Ilmu Sosial dan Ilmu Politik",
-  angkatan: "2026",
-  anggota: ["Nama Anggota 1", "Nama Anggota 2", "..."],
+  judulTugas: "Tugas Projek Pengabdian",
+  temaTugas: "Tema Hukum (Bullying)",
+  namaKelompok: "Kelompok 5",
+  kelas: "Kelas B",
+  prodi: "Program Studi Pendidikan Matematika",
+  fakultas: "Fakultas Keguruan dan Ilmu Pendidikan",
+  anggota: [
+    { nama: "Shaila Alexa Anandita", nim: "262151111022" },
+    { nama: "Fani Febriani", nim: "262151111038" }
+    // ...
+  ],
 
-  /* Kanal manual */
-  whatsapp: "6285659070362",      // format internasional, tanpa +
-  email: "bk@sekolah.sch.id",
-  namaSekolah: "SMP Negeri 1",    // sekolah sasaran, bukan penerbit
-  namaLayanan: "Bimbingan & Konseling",
+  /* Kanal pengaduan — cukup Tim GDS & Wali Kelas */
+  namaSekolah: "SMAN 8 Tasikmalaya",
+  namaLayanan: "Tim GDS SMAN 8 Tasikmalaya",
+  whatsapp: "6285659070362",   // format internasional, tanpa +
+  email: "",                  // opsional — kosongkan bila hanya Tim GDS / Wali Kelas
   maxIsi: 500
 };
 ```
@@ -181,6 +209,9 @@ jalan: form bekerja dalam mode lokal + tombol WhatsApp sebagai cadangan.
 > **Catatan URL:** `supabaseUrl` boleh diisi `https://xxx.supabase.co` **atau**
 > `https://xxx.supabase.co/rest/v1`. `api.js` menormalkan sendiri, jadi tidak akan
 > pernah terjadi alamat ganda `/rest/v1/rest/v1` yang membuat server membalas 404.
+
+> **Catatan NIM:** anggota boleh ditulis sebagai objek `{ nama, nim }` (NIM
+> ditampilkan sebagai badge biru) atau sebagai teks biasa.
 
 ### Cara kinerjanya
 
@@ -269,12 +300,14 @@ fetch(`https://REF.supabase.co/rest/v1/laporan`, {
 
 | Gejala | Penyebab & solusi |
 |---|---|
+| Form: *"API key tidak valid / sudah diganti di Supabase"* | **Anon key di `config.js` sudah tidak berlaku** (mis. setelah di-*regenerate* di dashboard, atau key salah disalin). Salin ulang **anon public** key di **Supabase → Settings → API**, lalu tempel ke `config.js`. Dashboard menampilkan pesan ini otomatis lewat `API.cekKoneksi()`. |
 | `42501 permission denied for table laporan` | `setup.sql` belum lengkap dijalankan (bagian GRANT). Jalankan ulang seluruh file. |
 | `permission denied for sequence laporan_id_seq` | Bagian GRANT sequence belum jalan. Jalankan ulang `setup.sql`. |
 | Form says "belum terkonfigurasi" | `config.js` masih kosong — isi `supabaseUrl` + `supabaseAnonKey`. |
 | Dashboard: "Email atau kata sandi salah" | Akun pengampu belum dibuat di **Authentication → Users**. |
 | Dashboard: "Gagal memuat daftar laporan" | Buka Console browser untuk melihat pesan teknis lengkap dari server. |
 | Laporan tidak masuk, dan di Console ada `404` | `supabaseUrl` pernah berisi `/rest/v1` lalu ditambahkan lagi. Sekarang `api.js` menormalkan otomatis, tapi pastikan `config.js` memakai Project URL apa adanya. |
+| Server membalas `503` | Proyek Supabase free-tier sedang dijeda. Buka proyek di dashboard Supabase untuk mengaktifkannya kembali. |
 
 ---
 

@@ -1,14 +1,15 @@
 /* ============================================================
    STOP BULLYING — Konfigurasi
    ------------------------------------------------------------
-   SATU-SATUNYA file yang perlu diedit untuk menyalakan backend.
+   SATU-SATUNYA file yang perlu diedit untuk menyalakan backend
+   dan mengisi identitas tugas kelompok.
 
    CARA MENGISI
    1. Buka dashboard Supabase > Project Settings > API
    2. Salin "Project URL"  -> ke supabaseUrl
    3. Salin "anon public" key (kunci kedua, bukan service_role)
       -> ke supabaseAnonKey
-   4. Isi kontak sekolah di bawah
+   4. Cek ulang identitas tugas kelompok di bawah
    5. Simpan, lalu refresh halaman
 
    CATATAN KEAMANAN
@@ -24,36 +25,43 @@ window.KONFIG = {
   /* ---------- Supabase ---------- */
   /* Isi dengan "Project URL" dari Dashboard Supabase > Settings > API.
      Boleh ditulis lengkap dengan "/rest/v1" atau tidak — api.js
-     menormalkan sendiri, jadi tidak akan terjadi "/rest/v1/rest/v1". */
+     menormalkan sendiri, jadi tidak akan terjadi "/rest/v1/rest/v1".
+
+     Publishable key (format "sb_publishable_...") maupun anon key
+     lama (format "eyJ...") sama-sama bisa dipakai di sini. */
   supabaseUrl: "https://xteetateumdzgczwcfdm.supabase.co",
-  supabaseAnonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh0ZWV0YXRldW1kemdjendjZmRtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI1MjA3ODcsImV4cCI6MjEwODA5Njc4N30.ZU1hkxa6XwdYEtfALVg4L0_gKD_BlkeoLvbe3RAiFR4",
+  supabaseAnonKey: "sb_publishable_-AJljeS5ZBm5PNLil9W7mw_4J-XdXe_",
 
   /* ---------- Identitas tugas kelompok ---------- */
   penerbit: "Universitas Siliwangi",
-  namaKelompok: "Kelompok 3",
-  judulTugas: "Poster Edukasi & Pencegahan Bullying",
-  fakultas: "Fakultas Ilmu Sosial dan Ilmu Politik",
-  angkatan: "2026",
+  judulTugas: "Tugas Projek Pengabdian",
+  temaTugas: "Tema Hukum (Bullying)",
+  namaKelompok: "Kelompok 5",
+  kelas: "Kelas B",
+  prodi: "Program Studi Pendidikan Matematika",
+  fakultas: "Fakultas Keguruan dan Ilmu Pendidikan",
 
-  /* Daftar anggota kelompok — ganti dengan nama & NIM asli.
-     Boleh format: "Nama — NIM" atau cukup "Nama". */
+  /* Daftar anggota kelompok (nama + NIM) */
   anggota: [
-    "Nama Anggota 1",
-    "Nama Anggota 2",
-    "Nama Anggota 3",
-    "Nama Anggota 4",
-    "Nama Anggota 5"
+    { nama: "Shaila Alexa Anandita", nim: "262151111022" },
+    { nama: "Fani Febriani", nim: "262151111038" },
+    { nama: "Rista Auliya Maisyaroh", nim: "262151111062" },
+    { nama: "Lisna Aulia", nim: "262151111082" },
+    { nama: "Ripka Anggiana", nim: "262151111118" },
+    { nama: "Clarisa Nur Calista", nim: "262151111138" }
   ],
 
-  /* ---------- Konteks laporan ---------- */
-  /* Sekolah sasaran tempat poster ini digunakan (bukan penerbit). */
-  namaSekolah: "SMP Negeri 1",
-  namaLayanan: "Bimbingan & Konseling",
+  /* ---------- Kanal pengaduan ---------- */
+  /* Pengaduan cukup disampaikan kepada Tim GDS atau Wali Kelas. */
+  namaSekolah: "SMAN 8 Tasikmalaya",
+  namaLayanan: "Tim GDS SMAN 8 Tasikmalaya",
 
-  /* ---------- Kanal manual ---------- */
   /* Format internasional tanpa "+" dan tanpa spasi, mis. 6285659070362 */
   whatsapp: "6285659070362",
-  email: "bk@sekolah.sch.id",
+
+  /* Email opsional. Dikosongkan karena pengaduan cukup lewat
+     Tim GDS / Wali Kelas. Isi bila ingin menyediakan kanal email. */
+  email: "",
 
   /* ---------- Batas ---------- */
   maxIsi: 500

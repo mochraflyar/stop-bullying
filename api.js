@@ -119,14 +119,66 @@
      perlu dicek. Penyebabnya konfigurasi database (GRANT/RLS),
      bukan kesalahan siswa. */
   function masalahIzin(res, bad) {
+    var pesan = ((bad && bad.pesan) || "").toLowerCase();
+
+    /* Key ditolak gateway Supabase (biasanya setelah di-regenerate
+       di dashboard, atau key salah disalin). */
+    if (pesan.indexOf("invalid api key") >= 0 || pesan.indexOf("jwt") >= 0) {
+      return "API key tidak valid / sudah diganti di Supabase";
+    }
+
+    /* 42501 = RLS bekerja persis seperti desain (anon tidak boleh membaca). */
     if (bad && bad.kode === "42501") return "server menolak akses (kode 42501)";
+
     if (res.status === 401 || res.status === 403) return "server menolak akses (" + res.status + ")";
+    if (res.status >= 500) return "server bermasalah (" + res.status + ")";
     return null;
   }
 
   var API = {
 
     siap: siap,
+
+    /* ---------- Pemeriksaan koneksi ----------
+
+       distinguishing "API key tidak valid" dari "RLS menolak" —
+       keduanya sama-sama 401, tapi artinya beda jauh:
+         - "Invalid API key"      -> key salah / sudah di-regenerate
+         - "permission denied"    -> key BENAR, RLS bekerja normal
+
+       Tidak pernah reject, selalu resolve. */
+    cekKoneksi: function () {
+      if (!siap()) {
+        return Promise.resolve({ ok: false, alasan: "backend belum dikonfigurasi" });
+      }
+      return denganTimeout(rest("/laporan?select=id&limit=1"), {
+        method: "GET",
+        headers: headers(null)
+      }, 10000).then(function (res) {
+        return bacaBad(res).then(function (b) {
+          var pesan = (b.pesan || "").toLowerCase();
+          if (pesan.indexOf("invalid api key") >= 0 || pesan.indexOf("jwt") >= 0) {
+            return {
+              ok: false,
+              alasan: "API key tidak valid. Salin ulang \"anon public\" key di Supabase > Settings > API lalu simpan ke config.js."
+            };
+          }
+          if (b.kode === "42501") {
+            /* Tepat seperti desain: peran anon tidak boleh membaca laporan. */
+            return { ok: true, alasan: "Terhubung. API key valid dan aturan RLS aktif." };
+          }
+          if (res.status === 401 || res.status === 403) {
+            return { ok: false, alasan: "Server menolak akses (" + res.status + ")." };
+          }
+          if (res.status >= 500) {
+            return { ok: false, alasan: "Server bermasalah (" + res.status + "). Proyek Supabase mungkin sedang dijeda." };
+          }
+          return { ok: true, alasan: "Terhubung ke server." };
+        });
+      }, function () {
+        return { ok: false, alasan: "Tidak ada koneksi ke server." };
+      });
+    },
 
     /* ---------- Laporan ---------- */
 

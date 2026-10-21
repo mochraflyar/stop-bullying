@@ -562,8 +562,8 @@ window.TOPIK = {
     sub: "Laporkan secara anonim dan aman",
     tag: "Layanan Pengaduan",
     tipe: "form",
-    definisi: "Laporan yang dikirim lewat formulir ini langsung masuk ke dashboard guru, tanpa perantara. Identitas pelapor dilindungi, dan laporan mode anonim tidak menyimpan nama sama sekali.",
-    catatan: "Kalau kamu lebih nyaman bicara langsung, datang ke ruang BK atau hubungi wali kelas. Untuk kasus yang mendesak, hubungi nomor layanan pengaduan yang tercantum di poster.",
+    definisi: "Laporan yang dikirim lewat formulir ini langsung masuk ke dashboard pengampu, tanpa perantara. Identitas pelapor dilindungi, dan laporan mode anonim tidak menyimpan nama sama sekali.",
+    catatan: "Pengaduan cukup disampaikan kepada Tim GDS SMAN 8 Tasikmalaya atau Wali kelasmu. Kalau kamu lebih nyaman bicara langsung, datang ke ruang GDS atau hubungi wali kelas di sekolah. Untuk kasus yang mendesak, hubungi nomor layanan pengaduan yang tercantum di poster.",
     bagian: [],
     terkait: ["dampak", "hukum", "hindari-anak"]
   }

@@ -359,13 +359,24 @@
   (function mulai() {
     var c = window.KONFIG || {};
     var konf = el("dashKonf");
+
     if (!window.API || !window.API.siap()) {
       konf.innerHTML = '<strong>Backend belum dikonfigurasi.</strong> Isi <code>config.js</code> ' +
         "(supabaseUrl + supabaseAnonKey) lalu jalankan <code>setup.sql</code> di SQL Editor Supabase.";
       konf.classList.add("warn");
     } else {
-      konf.textContent = "Terhubung ke backend. Laporan yang dikirim dari form pengaduan akan muncul di sini.";
-      konf.classList.add("ok");
+      konf.textContent = "Memeriksa koneksi ke server…";
+      konf.className = "dash-konf";
+      /* Cek key + RLS sungguhan, bukan sekadar "kolomnya terisi". */
+      window.API.cekKoneksi().then(function (r) {
+        if (r.ok) {
+          konf.textContent = r.alasan + " Laporan yang dikirim dari form pengaduan akan muncul di sini.";
+          konf.classList.add("ok");
+        } else {
+          konf.innerHTML = "<strong>Tidak bisa terhubung.</strong> " + esc(r.alasan);
+          konf.classList.add("warn");
+        }
+      });
     }
 
     /* Identitas tugas kelompok di footer */

@@ -1457,17 +1457,29 @@ a { color: inherit; }
 .d-ct-teks { font-size: .85rem; color: var(--ink); margin: 0 !important; }
 
 /* ---------- FOTO ASLI + PLACEHOLDER SVG ---------- */
-.gal-img img, .bc-img img {
+/* Rasio gambar asli berbeda-beda, jadikotak dibikin seragam (4:3) dan
+   foto memakai object-fit: contain — utuh, tidak terpotong. */
+.gal-img, .bc-img {
+  display: block;
+  background: #fff;
+  border-radius: var(--r-sm);
+  padding: 6px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+.gal-img img, .bc-img img,
+.gal-img svg, .bc-img svg {
   display: block;
   width: 100%;
-  height: auto;
-  border-radius: var(--r-sm);
+  height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
 }
 /* Gambar yang gagal dimuat disembunyikan agar placeholder SVG yang tampil.
    (Butuh !important — aturan .gal-img img di atas lebih spesifik daripada
    [hidden] dari stylesheet bawaan browser.) */
 img[data-fallback][hidden] { display: none !important; }
-.gal-ph { display: block; width: 100%; height: auto; }
+.gal-ph { display: block; width: 100%; height: 100%; }
 .gal-ph[hidden] { display: none !important; }
 
 /* ---------- TIM KELOMPOK ---------- */
@@ -1495,6 +1507,12 @@ img[data-fallback][hidden] { display: none !important; }
   padding: 4px 12px;
   margin-bottom: 12px;
 }
+.tim-tema {
+  font-family: var(--font-head);
+  font-size: clamp(.8rem, 1.5vw, .95rem);
+  color: var(--ink-2);
+  margin-bottom: 6px;
+}
 .tim-penerbit {
   font-family: var(--font-display);
   font-size: clamp(1.3rem, 3vw, 2rem);
@@ -1508,7 +1526,7 @@ img[data-fallback][hidden] { display: none !important; }
   color: var(--red);
   margin: 4px 0 8px;
 }
-.tim-meta { font-size: .82rem; color: var(--ink-3); font-weight: 700; }
+.tim-meta { font-size: .82rem; color: var(--ink-3); font-weight: 700; line-height: 1.5; }
 .tim-anggota-h {
   font-family: var(--font-head);
   font-size: .78rem;
@@ -1517,23 +1535,29 @@ img[data-fallback][hidden] { display: none !important; }
   color: var(--navy);
   margin-bottom: 10px;
 }
+.tim-anggota-h span {
+  background: var(--yellow);
+  color: var(--navy);
+  border-radius: 999px;
+  padding: 2px 10px;
+  font-size: .68rem;
+  margin-left: 6px;
+  letter-spacing: .5px;
+}
 .tim-list {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: 8px;
 }
 .tim-list li {
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 10px;
   background: var(--bg-soft);
   border: 1px solid var(--line);
   border-radius: var(--r-sm);
   padding: 9px 12px;
-  font-size: .84rem;
-  font-weight: 700;
-  color: var(--ink);
 }
 .tim-no {
   width: 22px;
@@ -1546,6 +1570,24 @@ img[data-fallback][hidden] { display: none !important; }
   color: var(--navy);
   font-family: var(--font-head);
   font-size: .68rem;
+}
+.tim-nama {
+  font-size: .84rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.25;
+}
+.tim-nim {
+  margin-left: auto;
+  flex: none;
+  font-size: .68rem;
+  font-weight: 800;
+  color: var(--blue);
+  background: #E9EEF8;
+  border-radius: 999px;
+  padding: 3px 9px;
+  letter-spacing: .3px;
+  white-space: nowrap;
 }
 .tim-kosong { grid-column: 1 / -1; font-style: italic; color: var(--ink-3); }
 .tim-kosong code { background: #E9EEF8; padding: 1px 5px; border-radius: 4px; font-size: .76rem; }
